@@ -2,7 +2,7 @@ module.exports = {
   siteMetadata: {
     title: `Cultura Salon`,
     description: `Cultura salon delivery beauty with simplicity & authenticity`,
-    address: `2570 Blackmon Dr. ,Suite 440,
+    address: `2570 Blackmon Dr,Suite 440,
     Decatur, GA 30033`,
     author: `@asantoss`,
   },
@@ -34,13 +34,13 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `gatsby-starter-default`,
-        short_name: `starter`,
+        name: `gatsby-cultura-salon`,
+        short_name: `salon`,
         start_url: `/`,
         background_color: `#663399`,
         theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+        icon: `src/images/adalys_logo.jpg`, // This path is relative to the root of the site.
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality

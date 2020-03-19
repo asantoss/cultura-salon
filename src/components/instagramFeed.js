@@ -7,6 +7,8 @@ const Feed = styled.div`
   margin: 1em;
   display: flex;
   overflow-x: scroll;
+  min-height: 150px;
+  min-width: 100%;
   img {
     margin: 0 0.5em;
   }
@@ -31,19 +33,34 @@ const Feed = styled.div`
 const InstagramFeedStyled = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 2em;
+  margin: 2em 0;
   justify-content: center;
   align-items: flex-start;
+  width: 100%;
+  .feed-header {
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    h2 {
+      font-size: 2rem;
+    }
+  }
   .action {
     font-size: 1.5em;
     font-weight: bold;
-    color: black;
+    color: #70767c;
     width: 25px;
     padding: 0 0.2em;
     margin: 0.2em;
+    cursor: pointer;
     :hover {
       background-color: rgb(0, 0, 0, 0.2);
     }
+  }
+  @media screen and (min-width: 700px) {
+    width: 80%;
+    margin: 2em auto;
   }
 `
 export default function InstagramFeed() {
@@ -64,28 +81,30 @@ export default function InstagramFeed() {
   const handleScroll = direction => {
     const carousel = carouselRef.current
     if (direction) {
-      return (carousel.scrollLeft += 158)
+      return (carousel.scrollLeft += 608)
     } else {
-      return (carousel.scrollLeft -= 158)
+      return (carousel.scrollLeft -= 608)
     }
   }
   return (
     <InstagramFeedStyled>
-      <div>
-        <h3>
+      <div className="feed-header">
+        <h2>
           Explore our Instagram
           <p>@{data.instaUserNode.username}</p>
-        </h3>
+        </h2>
+        <div>
+          <span className="action" onClick={() => handleScroll(0)}>
+            {"<"}
+          </span>
+          <span className="action" onClick={() => handleScroll(1)}>
+            >
+          </span>
+        </div>
       </div>
-      <div style={{ alignSelf: "center" }}>
-        <span className="action" onClick={() => handleScroll(0)}>
-          {"<"}
-        </span>
-        <span className="action" onClick={() => handleScroll(1)}>
-          >
-        </span>
+      <div>
+        <Feed ref={carouselRef}>{images}</Feed>
       </div>
-      <Feed ref={carouselRef}>{images}</Feed>
     </InstagramFeedStyled>
   )
 }

@@ -13,10 +13,14 @@ const Container = styled.div`
     color: black;
     font-size: 0.8em;
     font-weight: 300;
-    margin: 1em;
+    margin: 2em;
   }
   @media screen and (min-width: 700px) {
     text-align: center;
+    margin: 1em;
+    a {
+      font-size: 1em;
+    }
   }
 `
 const Header = ({ siteTitle }) => {

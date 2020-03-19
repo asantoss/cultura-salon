@@ -7,27 +7,41 @@ import { Button } from "../styled-components/button"
 import InstagramFeed from "../components/instagramFeed"
 import Map from "../components/mapContainer"
 import { useStaticQuery, graphql } from "gatsby"
+import BusinessInfo from "../components/businessInfo"
+import ContactForm from "../components/contactForm"
+import Footer from "../components/footer"
 
 const HeroContainer = styled.div`
-  margin-bottom: 1em;
+  margin-bottom: 2em;
+  width: 100%;
   #hero {
     margin-bottom: 1em;
     img {
+      width: 100%;
       border-radius: 8px;
     }
   }
   #call-to-action {
-    width: 50%;
+    width: 100%;
     padding: 2em;
     text-align: center;
+    h1 {
+      font-size: 2.5rem;
+    }
   }
   @media screen and (min-width: 700px) {
     display: flex;
-    width: 100vw;
-    justify-content: center;
+    width: 100%;
     align-items: center;
     #hero {
-      min-width: 500px;
+      min-width: 700px;
+      min-height: 700px;
+      flex-basis: 50%;
+    }
+    #call-to-action {
+      padding: 5.25em;
+      width: 50%;
+      text-align: left;
     }
   }
 `
@@ -52,15 +66,16 @@ const IndexPage = () => {
           <Image />
         </div>
         <div id="call-to-action">
-          <h2>
+          <h1>
             Our mission at Cultura Salon is creating confidence with simplicity
             and authenticity.
-          </h2>
+          </h1>
           <Button>Book Now</Button>
         </div>
       </HeroContainer>
       <InstagramFeed />
-      <Map address={data.site.siteMetadata.address} />
+      <BusinessInfo address={data.site.siteMetadata.address} />
+      <ContactForm />
     </Layout>
   )
 }

@@ -6,7 +6,6 @@ const AnyReactComponent = ({ text }) => <div className="marker"></div>
 const MapContainer = styled.div`
   width: 250px;
   height: 300px;
-  margin: auto;
   .marker {
     position: absolute;
     top: 50%;
@@ -21,6 +20,10 @@ const MapContainer = styled.div`
     &:hover {
       z-index: 1;
     }
+  }
+  @media screen and (min-width: 700px) {
+    width: 500px;
+    height: 300px;
   }
 `
 
@@ -47,6 +50,8 @@ class Map extends Component {
         return res.json()
       })
       .then(res => {
+        console.log(this.props.address)
+        debugger
         const { location } = res.results[0].geometry
         const zoom = 16
         console.log(location)

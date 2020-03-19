@@ -10,10 +10,13 @@ import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
 import Header from "./header"
 import styled from "styled-components"
+import Footer from "./footer"
 
 const Main = styled.main`
-  width: 90%;
-  margin: auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 `
 
 const Layout = ({ children }) => {
@@ -32,7 +35,7 @@ const Layout = ({ children }) => {
       <Header siteTitle={data.site.siteMetadata.title} />
       <div>
         <Main>{children}</Main>
-        <footer></footer>
+        <Footer name={data.site.siteMetadata.title} />
       </div>
     </>
   )

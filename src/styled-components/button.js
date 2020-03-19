@@ -6,4 +6,9 @@ export const Button = styled.button`
   font-size: 1rem;
   background-color: inherit;
   font-weight: 500;
+  cursor: pointer;
+  :hover {
+    background-color: black;
+    color: white;
+  }
 `
