@@ -13,10 +13,8 @@ import styled from "styled-components"
 import Footer from "./footer"
 
 const Main = styled.main`
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  min-width: 100%;
+  overflow-x: hidden;
 `
 
 const Layout = ({ children }) => {
@@ -33,10 +31,9 @@ const Layout = ({ children }) => {
   return (
     <>
       <Header siteTitle={data.site.siteMetadata.title} />
-      <div>
-        <Main>{children}</Main>
-        <Footer name={data.site.siteMetadata.title} />
-      </div>
+      <Main>{children}</Main>
+      <Footer name={data.site.siteMetadata.title} />
+      <div></div>
     </>
   )
 }

@@ -50,16 +50,13 @@ class Map extends Component {
         return res.json()
       })
       .then(res => {
-        console.log(this.props.address)
-        debugger
         const { location } = res.results[0].geometry
         const zoom = 16
-        console.log(location)
         this.setState(state => ({ ...state, center: { ...location }, zoom }))
       })
-    // .catch(e => {
-    //   console.error("Could not reach google for your business address")
-    // })
+      .catch(e => {
+        console.error("Could not reach google for your business address")
+      })
   }
 
   render() {

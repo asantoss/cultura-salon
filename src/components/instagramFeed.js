@@ -41,6 +41,7 @@ const InstagramFeedStyled = styled.div`
     font-size: 1.5rem;
     display: flex;
     justify-content: space-between;
+    flex-direction: column;
     width: 100%;
     h2 {
       font-size: 2rem;
@@ -61,6 +62,9 @@ const InstagramFeedStyled = styled.div`
   @media screen and (min-width: 700px) {
     width: 80%;
     margin: 2em auto;
+    .feed-header {
+      flex-direction: row;
+    }
   }
 `
 export default function InstagramFeed() {
