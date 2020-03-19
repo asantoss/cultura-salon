@@ -2,9 +2,18 @@ module.exports = {
   siteMetadata: {
     title: `Cultura Salon`,
     description: `Cultura salon delivery beauty with simplicity & authenticity`,
+    address: `2570 Blackmon Dr. ,Suite 440,
+    Decatur, GA 30033`,
     author: `@asantoss`,
   },
   plugins: [
+    {
+      resolve: `gatsby-source-instagram`,
+      options: {
+        type: `user-profile`,
+        username: `cultura.salon.atl`,
+      },
+    },
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-filesystem`,
