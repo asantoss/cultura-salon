@@ -12,9 +12,23 @@ const HeroContainer = styled.div`
   margin-bottom: 1em;
   #hero {
     margin-bottom: 1em;
+    img {
+      border-radius: 8px;
+    }
   }
   #call-to-action {
+    width: 50%;
     padding: 2em;
+    text-align: center;
+  }
+  @media screen and (min-width: 700px) {
+    display: flex;
+    width: 100vw;
+    justify-content: center;
+    align-items: center;
+    #hero {
+      min-width: 500px;
+    }
   }
 `
 const IndexPage = () => {
@@ -34,7 +48,7 @@ const IndexPage = () => {
     <Layout>
       <SEO title="Home" />
       <HeroContainer>
-        <div style={{ maxWidth: `350px` }} id="hero">
+        <div id="hero">
           <Image />
         </div>
         <div id="call-to-action">

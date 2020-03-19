@@ -15,6 +15,9 @@ const Container = styled.div`
     font-weight: 300;
     margin: 1em;
   }
+  @media screen and (min-width: 700px) {
+    text-align: center;
+  }
 `
 const Header = ({ siteTitle }) => {
   return (
@@ -24,14 +27,6 @@ const Header = ({ siteTitle }) => {
       </h1>
     </Container>
   )
-}
-
-Header.propTypes = {
-  siteTitle: PropTypes.string,
-}
-
-Header.defaultProps = {
-  siteTitle: ``,
 }
 
 export default Header

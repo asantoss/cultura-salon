@@ -12,10 +12,28 @@ const Feed = styled.div`
   }
   transition: all 2s ease-in;
   scroll-behavior: smooth;
+  &::-webkit-scrollbar-thumb {
+    background-color: darkgrey;
+    outline: 1px solid slategrey;
+    border-radius: 10px;
+  }
+  &::-webkit-scrollbar {
+    width: 1em;
+  }
+  &::-webkit-scrollbar-track {
+    background-color: none;
+  }
+  @media screen and (min-width: 700px) {
+    width: 70%;
+    margin: auto;
+  }
 `
 const InstagramFeedStyled = styled.div`
   display: flex;
   flex-direction: column;
+  margin: 2em;
+  justify-content: center;
+  align-items: flex-start;
   .action {
     font-size: 1.5em;
     font-weight: bold;
