@@ -31,18 +31,38 @@ const ContactFormContainer = styled.div`
     }
   }
 `
+function encode(data) {
+  return Object.keys(data)
+    .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+    .join("&")
+}
 
 export default function ContactForm() {
-  const [name, setName] = useState("")
-  const [email, setEmail] = useState("")
-  const [message, setMessage] = useState("")
+  const [state, setState] = useState({})
   const formRef = useRef()
   const handleSubmit = e => {
+    const form = e.target
     e.preventDefault()
+    fetch("/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body: encode({
+        "form-name": form.getAttribute("name"),
+        ...state,
+      })
+        .then(() => {
+          alert("Success!")
+        })
+        .catch(error => alert(error)),
+    })
+
     console.log({ name, email, message })
-    setName("")
-    setEmail("")
-    setMessage("")
+    setState({})
+  }
+  const handleChange = e => {
+    return setState(s => ({ ...s, [e.target.name]: e.target.value }))
   }
   return (
     <ContactFormContainer>
@@ -50,23 +70,22 @@ export default function ContactForm() {
       <p>
         Reach out to us and let us know if there is anything we can do for you.
       </p>
-      <form ref={formRef} onSubmit={handleSubmit}>
+      <form
+        ref={formRef}
+        onSubmit={handleSubmit}
+        data-netlify="true"
+        data-netlify-honeypot="bot-field"
+      >
+        <input type="hidden" name="form-name" value="name" />
+        <input type="text" onChange={handleChange} placeholder="Full Name" />
         <input
           type="text"
-          onChange={e => setName(e.target.value)}
-          placeholder="Full Name"
-          value={name}
-        />
-        <input
-          type="text"
-          onChange={e => setEmail(e.target.value)}
+          onChange={handleChange}
           placeholder="Email *"
           required
-          value={email}
         />
         <textarea
-          onChange={e => setMessage(e.target.value)}
-          value={message}
+          onChange={handleChange}
           required
           minLength="20"
           name=""
