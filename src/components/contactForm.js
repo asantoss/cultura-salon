@@ -38,7 +38,9 @@ function encode(data) {
 }
 
 export default function ContactForm() {
-  const [state, setState] = useState({})
+  const [name, setName] = useState("")
+  const [email, setEmail] = useState("")
+  const [message, setMessage] = useState("")
   const formRef = useRef()
   const handleSubmit = e => {
     const form = e.target
@@ -50,19 +52,16 @@ export default function ContactForm() {
       },
       body: encode({
         "form-name": form.getAttribute("name"),
-        ...state,
+        name,
+        email,
+        message,
       }),
     })
       .then(() => {
         alert("Success!")
+        form.reset()
       })
       .catch(error => alert(error))
-
-    console.log({ name, email, message })
-    setState({})
-  }
-  const handleChange = e => {
-    return setState(s => ({ ...s, [e.target.name]: e.target.value }))
   }
   return (
     <ContactFormContainer>
@@ -77,18 +76,24 @@ export default function ContactForm() {
         data-netlify-honeypot="bot-field"
       >
         <input type="hidden" name="form-name" value="name" />
-        <input type="text" onChange={handleChange} placeholder="Full Name" />
         <input
           type="text"
-          onChange={handleChange}
+          name="name"
+          onChange={e => setName(e.target.value)}
+          placeholder="Full Name"
+        />
+        <input
+          type="text"
+          onChange={e => setEmail(e.target.value)}
           placeholder="Email *"
+          name="email"
           required
         />
         <textarea
-          onChange={handleChange}
+          onChange={e => setMessage(e.target.value)}
           required
           minLength="20"
-          name=""
+          name="message"
           id=""
           cols="20"
           rows="3"
