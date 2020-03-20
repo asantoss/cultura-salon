@@ -72,6 +72,8 @@ export default function ContactForm() {
       <form
         ref={formRef}
         onSubmit={handleSubmit}
+        name="contact"
+        method="post"
         data-netlify="true"
         data-netlify-honeypot="bot-field"
       >
