@@ -51,12 +51,12 @@ export default function ContactForm() {
       body: encode({
         "form-name": form.getAttribute("name"),
         ...state,
-      })
-        .then(() => {
-          alert("Success!")
-        })
-        .catch(error => alert(error)),
+      }),
     })
+      .then(() => {
+        alert("Success!")
+      })
+      .catch(error => alert(error))
 
     console.log({ name, email, message })
     setState({})
