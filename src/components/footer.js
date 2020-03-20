@@ -1,15 +1,11 @@
 import React from "react"
 import styled from "styled-components"
-import {
-  faTwitter,
-  faFacebook,
-  faInstagram,
-} from "@fortawesome/free-brands-svg-icons"
+import { faFacebook, faInstagram } from "@fortawesome/free-brands-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 const FooterContainer = styled.footer`
   height: 160px;
   width: 100%;
-  margin: 2em 0;
+  margin: 2em auto;
   padding: 1em;
   display: flex;
   justify-content: space-around;
@@ -56,7 +52,6 @@ export default function Footer({ name }) {
         <a target="__blank" href="https://www.instagram.com/cultura.salon.atl/">
           <FontAwesomeIcon icon={faInstagram} className="icon-class" />
         </a>
-        <FontAwesomeIcon icon={faTwitter} className="icon-class" />
       </div>
     </FooterContainer>
   )

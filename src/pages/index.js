@@ -5,10 +5,10 @@ import SEO from "../components/seo"
 import styled from "styled-components"
 import { Button } from "../styled-components/button"
 import InstagramFeed from "../components/instagramFeed"
-import Modal from "../components/Modal"
 import { useStaticQuery, graphql } from "gatsby"
 import BusinessInfo from "../components/businessInfo"
 import ContactForm from "../components/contactForm"
+import IFrame from "../components/BookingFrame"
 
 const HeroContainer = styled.div`
   margin-bottom: 2em;
@@ -78,18 +78,11 @@ const IndexPage = () => {
           </h1>
           <Button onClick={() => setIsBooking(!isBooking)}>Book Now</Button>
           {isBooking && (
-            <Modal closeFunc={setIsBooking}>
-              <button
-                onClick={() => setIsBooking(!isBooking)}
-                className="close"
-              >
-                Close X
-              </button>
-              <iframe
-                title="Booking"
-                src="https://squareup.com/appointments/buyer/widget/fi2fsgd0yw00y2/VB5J8A254VE01"
-              />
-            </Modal>
+            <IFrame
+              title="Booking"
+              url="https://squareup.com/appointments/buyer/widget/fi2fsgd0yw00y2/VB5J8A254VE01"
+              closeFunction={setIsBooking}
+            />
           )}
         </div>
       </HeroContainer>
