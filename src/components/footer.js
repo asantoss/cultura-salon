@@ -47,8 +47,12 @@ export default function Footer({ name }) {
       </div>
       <div className="copyright">Copyright {date.getFullYear()} &copy;</div>
       <div className="social">
-        <FontAwesomeIcon icon={faFacebook} className="icon-class" />
-        <FontAwesomeIcon icon={faInstagram} className="icon-class" />
+        <a href="">
+          <FontAwesomeIcon icon={faFacebook} className="icon-class" />
+        </a>
+        <a target="__blank" href="https://www.instagram.com/cultura.salon.atl/">
+          <FontAwesomeIcon icon={faInstagram} className="icon-class" />
+        </a>
         <FontAwesomeIcon icon={faTwitter} className="icon-class" />
       </div>
     </FooterContainer>

@@ -4,20 +4,22 @@ import styled from "styled-components"
 
 const Feed = styled.div`
   flex-grow: 2;
-  margin: 1em;
   display: flex;
   overflow-x: scroll;
-  min-height: 150px;
-  min-width: 100%;
+  max-width: 100%;
   img {
-    margin: 0 0.5em;
+    margin: 1em;
+    cursor: pointer;
+    width: 230px;
+    height: 230px;
+    &:hover {
+      filter: opacity(65%);
+    }
   }
   transition: all 2s ease-in;
   scroll-behavior: smooth;
   &::-webkit-scrollbar-thumb {
-    background-color: darkgrey;
-    outline: 1px solid slategrey;
-    border-radius: 10px;
+    background-color: transparent;
   }
   &::-webkit-scrollbar {
     width: 1em;
@@ -26,8 +28,11 @@ const Feed = styled.div`
     background-color: none;
   }
   @media screen and (min-width: 700px) {
-    width: 70%;
-    margin: auto;
+    &::-webkit-scrollbar-thumb {
+      background-color: grey;
+      border-radius: 10px;
+      width: 50px;
+    }
   }
 `
 const InstagramFeedStyled = styled.div`
@@ -44,23 +49,29 @@ const InstagramFeedStyled = styled.div`
     flex-direction: column;
     width: 100%;
     h2 {
-      font-size: 2rem;
+      font-size: 1.5rem;
+    }
+    a {
+      display: block;
+      color: inherit;
+      &:hover {
+        text-decoration: underline;
+      }
     }
   }
   .action {
     font-size: 1.5em;
     font-weight: bold;
     color: #70767c;
-    width: 25px;
+    width: 40px;
     padding: 0 0.2em;
     margin: 0.2em;
+    background-color: transparent;
+    border: none;
     cursor: pointer;
-    :hover {
-      background-color: rgb(0, 0, 0, 0.2);
-    }
   }
   @media screen and (min-width: 700px) {
-    width: 80%;
+    width: 70%;
     margin: 2em auto;
     .feed-header {
       flex-direction: row;
@@ -70,44 +81,60 @@ const InstagramFeedStyled = styled.div`
 export default function InstagramFeed() {
   const carouselRef = useRef()
   const data = useStaticQuery(graphql`
-    query MyQuery {
-      instaUserNode {
-        username
+    query IGQuery {
+      allInstaNode {
+        edges {
+          node {
+            timestamp
+            username
+            caption
+            thumbnails {
+              src
+            }
+          }
+        }
       }
     }
   `)
-  const images = Array.from({ length: 12 }, x => (
-    <img
-      src="https://via.placeholder.com/150/FFFF00/000000?Text=WebsiteBuilders.com
-  C/O https://placeholder.com/"
-    />
-  ))
+  const images = data.allInstaNode.edges
+    .sort((a, b) => b.node.timestamp - a.node.timestamp)
+    .map(({ node }, i) => {
+      const { src } = node.thumbnails[1]
+      const { caption } = node
+      if (src) {
+        return <img key={i} src={src} loading="lazy" alt={caption} />
+      }
+      return null
+    })
   const handleScroll = direction => {
     const carousel = carouselRef.current
     if (direction) {
-      return (carousel.scrollLeft += 608)
+      return (carousel.scrollLeft += 708)
     } else {
-      return (carousel.scrollLeft -= 608)
+      return (carousel.scrollLeft -= 708)
     }
   }
+  const igName = data.allInstaNode.edges[0].node.username
   return (
     <InstagramFeedStyled>
       <div className="feed-header">
         <h2>
           Explore our Instagram
-          <p>@{data.instaUserNode.username}</p>
+          <a target="__blank" href={`https://www.instagram.com/${igName}/`}>
+            @{igName}
+          </a>
         </h2>
         <div>
-          <span className="action" onClick={() => handleScroll(0)}>
+          <button className="action" onClick={() => handleScroll(0)}>
             {"<"}
-          </span>
-          <span className="action" onClick={() => handleScroll(1)}>
+          </button>
+          <button className="action" onClick={() => handleScroll(1)}>
             >
-          </span>
+          </button>
         </div>
       </div>
       <div>
-        <Feed ref={carouselRef}>{images}</Feed>
+        <Feed ref={carouselRef}>{images.sort()}</Feed>
       </div>
     </InstagramFeedStyled>
   )

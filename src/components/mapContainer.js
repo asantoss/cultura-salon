@@ -22,7 +22,7 @@ const MapContainer = styled.div`
     }
   }
   @media screen and (min-width: 700px) {
-    width: 500px;
+    width: 600px;
     height: 300px;
   }
 `

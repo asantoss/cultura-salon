@@ -3,6 +3,7 @@ import Map from "./mapContainer"
 import styled from "styled-components"
 
 const BusinessInfoContainer = styled.div`
+  width: 100%;
   margin: 2em auto;
   display: flex;
   flex-direction: column;
@@ -25,9 +26,12 @@ const BusinessInfoContainer = styled.div`
     }
   }
   @media screen and (min-width: 700px) {
+    width: 70%;
     flex-direction: row;
+    justify-content: flex-start;
     align-items: flex-start;
     .location-hours {
+      margin: 0 2em;
       div {
         flex-direction: row;
       }
@@ -36,7 +40,6 @@ const BusinessInfoContainer = styled.div`
 `
 
 export default function BusinessInfo({ address }) {
-  console.log(address)
   return (
     <BusinessInfoContainer>
       <Map address={address} />

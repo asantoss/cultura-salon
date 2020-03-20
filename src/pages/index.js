@@ -1,15 +1,14 @@
-import React from "react"
+import React, { useState, useRef } from "react"
 import Layout from "../components/layout"
 import Image from "../components/image"
 import SEO from "../components/seo"
 import styled from "styled-components"
 import { Button } from "../styled-components/button"
 import InstagramFeed from "../components/instagramFeed"
-import Map from "../components/mapContainer"
+import Modal from "../components/Modal"
 import { useStaticQuery, graphql } from "gatsby"
 import BusinessInfo from "../components/businessInfo"
 import ContactForm from "../components/contactForm"
-import Footer from "../components/footer"
 
 const HeroContainer = styled.div`
   margin-bottom: 2em;
@@ -33,12 +32,18 @@ const HeroContainer = styled.div`
     display: flex;
     width: 100%;
     align-items: center;
+    height: fit-content;
     #hero {
-      min-width: 700px;
-      min-height: 700px;
+      display: inline-block;
+      min-width: 800px;
+      min-height: 600px;
       flex-basis: 50%;
+      img {
+        width: 100%;
+      }
     }
     #call-to-action {
+      display: inline-block;
       padding: 5.25em;
       width: 50%;
       text-align: left;
@@ -46,6 +51,7 @@ const HeroContainer = styled.div`
   }
 `
 const IndexPage = () => {
+  const [isBooking, setIsBooking] = useState(false)
   const data = useStaticQuery(graphql`
     query siteData {
       site {
@@ -70,7 +76,18 @@ const IndexPage = () => {
             Our mission at Cultura Salon is creating confidence with simplicity
             and authenticity.
           </h1>
-          <Button>Book Now</Button>
+          <Button onClick={() => setIsBooking(!isBooking)}>Book Now</Button>
+          {isBooking && (
+            <Modal closeFunc={setIsBooking}>
+              <button
+                onClick={() => setIsBooking(!isBooking)}
+                className="close"
+              >
+                Close X
+              </button>
+              <iframe src="https://squareup.com/appointments/buyer/widget/fi2fsgd0yw00y2/VB5J8A254VE01" />
+            </Modal>
+          )}
         </div>
       </HeroContainer>
       <InstagramFeed />

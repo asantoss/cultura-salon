@@ -7,11 +7,16 @@ module.exports = {
     author: `@asantoss`,
   },
   plugins: [
+    "gatsby-plugin-instagram-embed",
     {
       resolve: `gatsby-source-instagram`,
       options: {
-        type: `user-profile`,
         username: `cultura.salon.atl`,
+        access_token:
+          "IGQVJYR1BPcFZAFZA0JjcTNzdVFodkdzd2lxbGxwbnc0aUpWV1ZAWc1BJUlpCYUFGQVJRUWtiT3lPU19KbGpyTmlVa3ZAHaVVLRTZA4X0F2Nk9RNFpfZAVZAGRnNXWUUyV3E4TXo0OW1XYW01a0VPSlBxdXlCcAZDZD",
+        instagram_id: "274302406892373",
+        paginate: 50,
+        maxPosts: 100,
       },
     },
     `gatsby-plugin-react-helmet`,
