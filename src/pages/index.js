@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react"
+import React, { useState } from "react"
 import Layout from "../components/layout"
 import Image from "../components/image"
 import SEO from "../components/seo"
@@ -85,7 +85,10 @@ const IndexPage = () => {
               >
                 Close X
               </button>
-              <iframe src="https://squareup.com/appointments/buyer/widget/fi2fsgd0yw00y2/VB5J8A254VE01" />
+              <iframe
+                title="Booking"
+                src="https://squareup.com/appointments/buyer/widget/fi2fsgd0yw00y2/VB5J8A254VE01"
+              />
             </Modal>
           )}
         </div>

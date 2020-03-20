@@ -18,6 +18,9 @@ const FooterContainer = styled.footer`
   text-align: center;
   background-color: #adadaf;
   .social {
+    a {
+      color: inherit;
+    }
     display: flex;
     flex-wrap: wrap;
     margin: 0.5em;
@@ -47,7 +50,7 @@ export default function Footer({ name }) {
       </div>
       <div className="copyright">Copyright {date.getFullYear()} &copy;</div>
       <div className="social">
-        <a href="">
+        <a href="https://www.facebook.com/culturasalonatl/">
           <FontAwesomeIcon icon={faFacebook} className="icon-class" />
         </a>
         <a target="__blank" href="https://www.instagram.com/cultura.salon.atl/">
