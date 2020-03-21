@@ -1,12 +1,15 @@
 module.exports = {
   siteMetadata: {
     title: `Cultura Salon`,
-    description: `Cultura salon delivery beauty with simplicity & authenticity`,
+    description: `Balayage • Makeup • Haircuts • Handtied Extensions Oligo Pro • Redken • Olaplex`,
     address: `2570 Blackmon Dr,Suite 440,
     Decatur, GA 30033`,
+    igHandle: "cultura.salon.atl",
     author: `@asantoss`,
+    siteUrl: `https://culturasalon.com`,
   },
   plugins: [
+    `gatsby-plugin-sitemap`,
     `gatsby-plugin-material-ui`,
     "gatsby-plugin-instagram-embed",
     {

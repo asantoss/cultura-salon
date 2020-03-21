@@ -24,9 +24,6 @@ const HeroContainer = styled.div`
   #call-to-action {
     width: 100%;
     padding: 2em;
-    h1 {
-      font-size: 2.5rem;
-    }
   }
   @media screen and (min-width: 700px) {
     display: flex;
@@ -47,6 +44,9 @@ const HeroContainer = styled.div`
       padding: 5.25em;
       width: 50%;
       text-align: left;
+      h1 {
+        font-size: 2.5rem;
+      }
     }
   }
 `

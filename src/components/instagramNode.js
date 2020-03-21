@@ -19,6 +19,9 @@ const IGPostContainer = styled.div`
   align-items: center;
   justify-content: center;
   .mainContainer {
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    padding: 0.5em;
     flex-direction: column;
     display: flex;
     background-color: white;
