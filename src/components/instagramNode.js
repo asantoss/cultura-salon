@@ -94,11 +94,11 @@ export default function InstagramNode({
         height="240px"
       />
       {isOpen && (
-        <Modal closeFunc={setIsOpen} isScrollable={true}>
+        <Modal isScrollable={true}>
           <IGPostContainer>
             <div className="mainContainer">
               <div className="close">
-                <IconButton>
+                <IconButton onClick={() => setIsOpen(!isOpen)}>
                   <CloseSharpIcon />
                 </IconButton>
               </div>

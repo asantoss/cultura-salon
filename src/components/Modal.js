@@ -16,13 +16,10 @@ export const ModalStyled = styled.div`
   overflow: ${({ isScrollable }) => (isScrollable ? "scroll" : "hidden")};
 `
 
-const Modal = ({ children, closeFunc, isScrollable }) => {
+const Modal = ({ children, isScrollable }) => {
   const elRef = useRef(null)
   if (!elRef.current) {
     const div = document.createElement("div")
-    div.addEventListener("click", function(e) {
-      closeFunc(false)
-    })
     elRef.current = div
   }
   useEffect(() => {

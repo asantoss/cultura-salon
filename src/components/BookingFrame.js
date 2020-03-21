@@ -80,7 +80,7 @@ const BookingFrame = styled.div`
 export default function IFrame({ closeFunction, url, title }) {
   const [isLoading, setIsLoading] = useState(true)
   return (
-    <Modal closeFunc={closeFunction} isScrollable={false}>
+    <Modal isScrollable={false}>
       <BookingFrame>
         <div
           className="close"

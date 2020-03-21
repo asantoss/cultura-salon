@@ -11,6 +11,7 @@ import ContactForm from "../components/contactForm"
 import IFrame from "../components/BookingFrame"
 
 const HeroContainer = styled.div`
+  text-align: left;
   margin-bottom: 2em;
   width: 100%;
   #hero {
@@ -23,7 +24,6 @@ const HeroContainer = styled.div`
   #call-to-action {
     width: 100%;
     padding: 2em;
-    text-align: center;
     h1 {
       font-size: 2.5rem;
     }

@@ -61,7 +61,6 @@ class Map extends Component {
       })
       .then(res => {
         const { location } = res.results[0].geometry
-        debugger
         const zoom = 16
         const directionsLink = encodeAddress(res.results[0].formatted_address)
         this.setState(state => ({

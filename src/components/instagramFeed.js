@@ -4,6 +4,9 @@ import styled from "styled-components"
 import InstagramNode from "./instagramNode"
 import Img from "gatsby-image"
 import timeStampParse from "../utils/timeStampParse"
+import IconButton from "@material-ui/core/IconButton"
+import ArrowBackIosSharpIcon from "@material-ui/icons/ArrowBackIosSharp"
+import ArrowForwardIosSharpIcon from "@material-ui/icons/ArrowForwardIosSharp"
 const Feed = styled.div`
   flex-grow: 2;
   display: flex;
@@ -114,7 +117,6 @@ export default function InstagramFeed() {
       const { src } = node.thumbnails[1]
       const { caption, id, timestamp } = node
       const date = timeStampParse(timestamp)
-      console.log(date)
       if (src) {
         return (
           <InstagramNode
@@ -148,12 +150,12 @@ export default function InstagramFeed() {
           </a>
         </h2>
         <div>
-          <button className="action" onClick={() => handleScroll(0)}>
-            {"<"}
-          </button>
-          <button className="action" onClick={() => handleScroll(1)}>
-            >
-          </button>
+          <IconButton className="action" onClick={() => handleScroll(0)}>
+            <ArrowBackIosSharpIcon />
+          </IconButton>
+          <IconButton className="action" onClick={() => handleScroll(1)}>
+            <ArrowForwardIosSharpIcon />
+          </IconButton>
         </div>
       </div>
       <div>
