@@ -2,7 +2,7 @@ import Typography from "typography"
 
 // const typography = new Typography()
 const typography = new Typography({
-  baseFontSize: "18px",
+  baseFontSize: "16px",
   baseLineHeight: 1.45,
   headerFontFamily: ["Karla", "san-serif"],
 })

@@ -1,8 +1,9 @@
 import React, { useState } from "react"
-import Modal from "./Modal"
+import Modal from "../Modal"
 import styled from "styled-components"
 import IconButton from "@material-ui/core/IconButton"
 import CloseSharpIcon from "@material-ui/icons/CloseSharp"
+import CaptionTags from "./hashtags"
 const IGPostContainer = styled.div`
   @keyframes fadeIn {
     from {
@@ -20,11 +21,12 @@ const IGPostContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  font-family: "Karla", sans-serif;
   .mainContainer {
     width: 100%;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
-    padding: 0.5em;
+    background-color: #f8f8f8;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
     flex-direction: column;
     display: flex;
   }
@@ -39,14 +41,23 @@ const IGPostContainer = styled.div`
   .caption {
     background-color: white;
     color: black;
-    margin: 0;
-    padding: 0 1em;
+    margin: 1.5em 0;
+    padding: 0 1.5em;
     white-space: pre-line;
     display: flex;
+    font-size: 1em;
     flex-direction: column;
-    font-weight: 400;
+    font-weight: 300;
+    line-height: 1.31;
+    a {
+      display: inline;
+      text-decoration: none;
+      color: #003569;
+    }
   }
   .close {
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
     display: flex;
     justify-content: flex-end;
     background-color: #f8f8f8;
@@ -96,14 +107,7 @@ export default function InstagramNode({
   const [isOpen, setIsOpen] = useState(false)
   return (
     <>
-      <img
-        onClick={() => setIsOpen(true)}
-        src={thumbnail}
-        loading="lazy"
-        alt={caption}
-        width="240px"
-        height="240px"
-      />
+      <img onClick={() => setIsOpen(true)} src={thumbnail} alt={caption} />
       {isOpen && (
         <Modal isScrollable={true}>
           <IGPostContainer>
@@ -119,9 +123,8 @@ export default function InstagramNode({
                 </a>
               </div>
               <div className="caption">
-                {timeStamp}
-                <br />
-                {caption}
+                <p>{timeStamp}</p>
+                <CaptionTags {...{ caption }} />
               </div>
             </div>
           </IGPostContainer>

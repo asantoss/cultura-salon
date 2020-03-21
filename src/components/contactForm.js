@@ -5,26 +5,37 @@ import { Button } from "../styled-components/button"
 const ContactFormContainer = styled.div`
   display: flex;
   flex-direction: column;
-  width: 90%;
-  margin: auto;
+  width: 100%;
+  padding: 2em;
+  margin: 1em 0;
   text-align: center;
   justify-content: center;
   align-items: center;
+  p {
+    font-weight: normal;
+    font-family: "Karla", sans-serif;
+  }
   form {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 100%;
+    font-family: "Karla", sans-serif;
     input,
     textarea {
+      color: rgba(2, 1, 1, 0.3);
       width: 100%;
-      min-height: 48px;
+      height: 48px;
       border: 1px solid grey;
-      border-radius: 5px;
+      border-color: rgba(2, 1, 1, 0.3);
+      border-radius: 2px;
       padding: 1em;
-      margin: 0.5em;
+      margin: 0.5em 0;
       resize: none;
+    }
+    textarea {
+      min-height: 96px;
     }
     @media screen and (min-width: 700px) {
       width: 700px;
@@ -65,7 +76,7 @@ export default function ContactForm() {
   }
   return (
     <ContactFormContainer>
-      <h2>Contact Form</h2>
+      <h3>Contact Us</h3>
       <p>
         Reach out to us and let us know if there is anything we can do for you.
       </p>
@@ -101,7 +112,9 @@ export default function ContactForm() {
           rows="3"
           placeholder="Message"
         ></textarea>
-        <Button type="submit">Submit</Button>
+        <Button style={{ width: "50%", height: "48px" }} type="submit">
+          Submit
+        </Button>
       </form>
     </ContactFormContainer>
   )

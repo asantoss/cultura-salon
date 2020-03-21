@@ -5,8 +5,7 @@ import styled from "styled-components"
 const Container = styled.div`
   background: #fff;
   padding: 0 0.625em;
-  margin: auto;
-  height: 3em;
+  margin: 1.25em auto;
   display: flex;
   justify-content: center;
   align-items: baseline;
@@ -17,10 +16,13 @@ const Container = styled.div`
     font-weight: 300;
   }
   h2 {
+    margin-bottom: 0;
+    padding: 0 1.25em;
     font-weight: 500;
-    margin: 0;
     line-height: 32.5px;
-    font-size: 1.625rem;
+    font-size: 1.25rem;
+  }
+  .header-container {
   }
   @media screen and (min-width: 700px) {
     text-align: center;
@@ -36,7 +38,7 @@ const Container = styled.div`
 const Header = ({ siteTitle }) => {
   return (
     <Container>
-      <div>
+      <div className="header-container">
         <Link to="/">
           <h2>{siteTitle}</h2>
         </Link>

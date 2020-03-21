@@ -4,26 +4,40 @@ import styled from "styled-components"
 
 const BusinessInfoContainer = styled.div`
   width: 100%;
-  margin: 2em auto;
+  padding: 5.3em 0;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  align-items: center;
+  font-family: "Karla", sans-serif;
+  h3 {
+    margin: 1em 0;
+    font-weight: 400;
+    a {
+      color: inherit;
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
   .location-hours {
     display: flex;
     flex-direction: column;
-    margin: 0 2em;
+    margin: 2em 2em;
     div {
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      &.address {
-        margin: 1em;
-      }
-      &.hours {
-        margin: 1em;
-      }
     }
+    .address,
+    .hours {
+      line-height: 2;
+      font-size: 1rem;
+    }
+  }
+  .directionsLink {
+    margin: 1em 0;
+    font-weight: 400;
   }
   @media screen and (min-width: 900px) {
     width: 70%;
@@ -38,7 +52,15 @@ const BusinessInfoContainer = styled.div`
     }
   }
 `
-
+function encodeAddress(address) {
+  return `https://www.google.com/maps/place/${address
+    .replace(" ", ",")
+    .split(",")
+    .map(piece => {
+      return piece + "+"
+    })
+    .join("")}`
+}
 export default function BusinessInfo({ address }) {
   return (
     <BusinessInfoContainer>
@@ -51,10 +73,14 @@ export default function BusinessInfo({ address }) {
               Cultura Salon
               <br /> 2570 Blackmon Dr. ,Suite 440, <br /> Decatur, GA 30033
               <br />
-              located inside Salon Lofts Loft #15
+              located inside Salon Lofts
+              <br /> Loft #15
               <br /> (404) 585-0795
             </p>
           </div>
+          <h3 className="directionsLink">
+            <a href={encodeAddress(address)}>Get Directions</a>
+          </h3>
           <div className="address">
             <p>
               Monday Closed

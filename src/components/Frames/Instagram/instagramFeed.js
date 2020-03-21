@@ -3,7 +3,7 @@ import { useStaticQuery, graphql } from "gatsby"
 import styled from "styled-components"
 import InstagramNode from "./instagramNode"
 import Img from "gatsby-image"
-import timeStampParse from "../utils/timeStampParse"
+import timeStampParse from "../../../utils/timeStampParse"
 import IconButton from "@material-ui/core/IconButton"
 import ArrowBackIosSharpIcon from "@material-ui/icons/ArrowBackIosSharp"
 import ArrowForwardIosSharpIcon from "@material-ui/icons/ArrowForwardIosSharp"
@@ -15,8 +15,8 @@ const Feed = styled.div`
   img {
     margin: 1em;
     cursor: pointer;
-    width: 230px;
-    height: 230px;
+    width: 180px;
+    height: 180px;
     &:hover {
       filter: opacity(65%);
     }
@@ -41,6 +41,7 @@ const Feed = styled.div`
   }
 `
 const InstagramFeedStyled = styled.div`
+  padding: 2em;
   display: flex;
   flex-direction: column;
   margin: 2em 0;
@@ -48,16 +49,16 @@ const InstagramFeedStyled = styled.div`
   align-items: flex-start;
   width: 100%;
   .feed-header {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     display: flex;
     justify-content: space-between;
-    flex-direction: column;
     width: 100%;
     h2 {
       font-size: 1.5rem;
       font-weight: 500;
     }
     a {
+      font-size: 0.7em;
       display: block;
       color: inherit;
       &:hover {
@@ -66,10 +67,8 @@ const InstagramFeedStyled = styled.div`
     }
   }
   .action {
-    font-size: 1.5em;
     font-weight: bold;
     color: #70767c;
-    width: 40px;
     padding: 0 0.2em;
     margin: 0.2em;
     background-color: transparent;

@@ -1,6 +1,8 @@
 module.exports = {
   siteMetadata: {
     title: `Cultura Salon`,
+    mission: `Our mission at Cultura Salon is creating confidence with simplicity
+    and authenticity.`,
     description: `Balayage • Makeup • Haircuts • Handtied Extensions Oligo Pro • Redken • Olaplex`,
     address: `2570 Blackmon Dr,Suite 440,
     Decatur, GA 30033`,
@@ -16,8 +18,6 @@ module.exports = {
       resolve: `gatsby-source-instagram`,
       options: {
         username: `cultura.salon.atl`,
-        access_token:
-          "IGQVJYR1BPcFZAFZA0JjcTNzdVFodkdzd2lxbGxwbnc0aUpWV1ZAWc1BJUlpCYUFGQVJRUWtiT3lPU19KbGpyTmlVa3ZAHaVVLRTZA4X0F2Nk9RNFpfZAVZAGRnNXWUUyV3E4TXo0OW1XYW01a0VPSlBxdXlCcAZDZD",
         instagram_id: "274302406892373",
         paginate: 50,
         maxPosts: 100,
