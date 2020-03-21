@@ -5,7 +5,11 @@ import styled from "styled-components"
 const Container = styled.div`
   background: #fff;
   padding: 0 0.625em;
-  margin: 1em;
+  margin: auto;
+  height: 3em;
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
   a {
     text-decoration: none;
     color: black;
@@ -13,13 +17,17 @@ const Container = styled.div`
     font-weight: 300;
   }
   h2 {
-    font-weight: 600;
+    font-weight: 500;
     margin: 0;
-    font-size: 1.375rem;
+    line-height: 32.5px;
+    font-size: 1.625rem;
   }
   @media screen and (min-width: 700px) {
     text-align: center;
-    margin: 1em;
+    margin: 1.5em;
+    h2 {
+      font-weight: 500;
+    }
     a {
       font-size: 1em;
     }
@@ -28,9 +36,11 @@ const Container = styled.div`
 const Header = ({ siteTitle }) => {
   return (
     <Container>
-      <Link to="/">
-        <h2>{siteTitle}</h2>
-      </Link>
+      <div>
+        <Link to="/">
+          <h2>{siteTitle}</h2>
+        </Link>
+      </div>
     </Container>
   )
 }

@@ -18,12 +18,16 @@ const HeroContainer = styled.div`
     margin-bottom: 1em;
     img {
       width: 100%;
-      border-radius: 8px;
     }
   }
   #call-to-action {
     width: 100%;
     padding: 2em;
+    h1 {
+      line-height: 1.125;
+      font-weight: 500;
+      letter-spacing: -0.8px;
+    }
   }
   @media screen and (min-width: 700px) {
     display: flex;
@@ -32,18 +36,27 @@ const HeroContainer = styled.div`
     height: fit-content;
     #hero {
       display: inline-block;
-      min-width: 800px;
-      min-height: 600px;
+      width: 50%;
       flex-basis: 50%;
       img {
         width: 100%;
       }
     }
     #call-to-action {
-      display: inline-block;
-      padding: 5.25em;
       width: 50%;
-      text-align: left;
+      display: flex;
+      justify-content: center;
+      align-items: baseline;
+      div {
+        width: 60%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        button {
+          margin: 1em 0;
+        }
+      }
       h1 {
         font-size: 2.5rem;
       }
@@ -72,18 +85,20 @@ const IndexPage = () => {
           <Image />
         </div>
         <div id="call-to-action">
-          <h1>
-            Our mission at Cultura Salon is creating confidence with simplicity
-            and authenticity.
-          </h1>
-          <Button onClick={() => setIsBooking(!isBooking)}>Book Now</Button>
-          {isBooking && (
-            <IFrame
-              title="Booking"
-              url="https://squareup.com/appointments/buyer/widget/fi2fsgd0yw00y2/VB5J8A254VE01"
-              closeFunction={setIsBooking}
-            />
-          )}
+          <div>
+            <h1>
+              Our mission at Cultura Salon is creating confidence with
+              simplicity and authenticity.
+            </h1>
+            <Button onClick={() => setIsBooking(!isBooking)}>Book Now</Button>
+            {isBooking && (
+              <IFrame
+                title="Booking"
+                url="https://squareup.com/appointments/buyer/widget/fi2fsgd0yw00y2/VB5J8A254VE01"
+                closeFunction={setIsBooking}
+              />
+            )}
+          </div>
         </div>
       </HeroContainer>
       <InstagramFeed />

@@ -4,8 +4,7 @@ import Typography from "typography"
 const typography = new Typography({
   baseFontSize: "18px",
   baseLineHeight: 1.45,
-  headerFontFamily: ["Karla", "serif"],
-  bodyFontFamily: ["Roboto", "sans-serif"],
+  headerFontFamily: ["Karla", "san-serif"],
 })
 
 // Insert styles directly into the <head>
