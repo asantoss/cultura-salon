@@ -54,11 +54,12 @@ const IGPostContainer = styled.div`
     position: relative;
     margin: auto;
     width: 960px;
+    transform: translateY(20%);
     .mainContainer {
       margin: auto;
       display: grid;
       grid-template-columns: 2fr 1fr;
-      grid-template-rows: 100px 2fr;
+      grid-template-rows: 50px 2fr;
     }
     .imageContainer {
       grid-row: 1 / span 3;

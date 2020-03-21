@@ -44,7 +44,7 @@ class Map extends Component {
   }
   componentDidMount() {
     fetch(
-      `https://maps.googleapis.com/maps/api/geocode/json?address=${this.props.address}&key=${process.env.GOOGLE_API_KEY}`
+      `https://maps.googleapis.com/maps/api/geocode/json?address=${this.props.address}&key=${process.env.GATSBY_GOOGLE_API_KEY}`
     )
       .then(res => {
         return res.json()
@@ -64,7 +64,7 @@ class Map extends Component {
       // Important! Always set the container height explicitly
       <MapContainer>
         <GoogleMapReact
-          bootstrapURLKeys={{ key: process.env.GOOGLE_API_KEY }}
+          bootstrapURLKeys={{ key: process.env.GATSBY_GOOGLE_API_KEY }}
           defaultCenter={this.props.center}
           center={this.state.center}
           zoom={this.state.zoom}
