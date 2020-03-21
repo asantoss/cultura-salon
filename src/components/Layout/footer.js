@@ -18,6 +18,9 @@ const FooterContainer = styled.footer`
       font-size: 1.25em;
     }
   }
+  .copyright {
+    margin-bottom: 0;
+  }
   .social {
     #fb {
       color: #3b5998;
@@ -28,7 +31,6 @@ const FooterContainer = styled.footer`
     display: flex;
     flex-wrap: wrap;
     margin: 0.5em;
-    width: 35%;
     justify-content: space-evenly;
     font-size: 1.5em;
     flex-direction: row;
@@ -49,12 +51,8 @@ export default function Footer({ name }) {
 
   return (
     <FooterContainer>
-      <div className="business-name">
-        <h3>{name}</h3>
-      </div>
-      <div className="copyright">
-        <p>Copyright {date.getFullYear()} &copy;</p>
-      </div>
+      <h3 className="business-name">{name}</h3>
+      <p className="copyright">Copyright {date.getFullYear()} &copy;</p>
       <div className="social">
         <a href="https://www.facebook.com/culturasalonatl/" id="fb">
           <FacebookIcon />

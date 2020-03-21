@@ -40,14 +40,22 @@ const BusinessInfoContainer = styled.div`
     font-weight: 400;
   }
   @media screen and (min-width: 900px) {
-    width: 70%;
     flex-direction: row;
     justify-content: flex-start;
     align-items: flex-start;
+    .directionsLink {
+      display: inline;
+      margin: 1em 0;
+      font-weight: 400;
+    }
     .location-hours {
       margin: 0 2em;
+      width: 50%;
       div {
         flex-direction: row;
+      }
+      .hours {
+        flex-direction: column;
       }
     }
   }
@@ -77,10 +85,10 @@ export default function BusinessInfo({ address }) {
               <br /> Loft #15
               <br /> (404) 585-0795
             </p>
+            <h3 className="directionsLink">
+              <a href={encodeAddress(address)}>Get Directions</a>
+            </h3>
           </div>
-          <h3 className="directionsLink">
-            <a href={encodeAddress(address)}>Get Directions</a>
-          </h3>
           <div className="address">
             <p>
               Monday Closed

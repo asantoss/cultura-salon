@@ -75,8 +75,8 @@ const InstagramFeedStyled = styled.div`
     border: none;
     cursor: pointer;
   }
-  @media screen and (min-width: 700px) {
-    width: 70%;
+  @media screen and (min-width: 900px) {
+    width: 100%;
     margin: 2em auto;
     .feed-header {
       flex-direction: row;
