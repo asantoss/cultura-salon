@@ -25,7 +25,7 @@ const BusinessInfoContainer = styled.div`
       }
     }
   }
-  @media screen and (min-width: 700px) {
+  @media screen and (min-width: 900px) {
     width: 70%;
     flex-direction: row;
     justify-content: flex-start;

@@ -12,19 +12,21 @@ const IGPostContainer = styled.div`
       opacity: 1;
     }
   }
+  width: 100%;
   border-radius: 10px;
   animation: fadeIn 0.5s ease-in;
   margin-top: 1em;
+  height: fit-content;
   display: flex;
   align-items: center;
   justify-content: center;
   .mainContainer {
+    width: 100%;
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
     padding: 0.5em;
     flex-direction: column;
     display: flex;
-    background-color: white;
   }
   .imageContainer {
     height: 50%;
@@ -35,8 +37,9 @@ const IGPostContainer = styled.div`
     }
   }
   .caption {
+    background-color: white;
     color: black;
-    margin: 1em 0;
+    margin: 0;
     padding: 0 1em;
     white-space: pre-line;
     display: flex;
@@ -63,13 +66,18 @@ const IGPostContainer = styled.div`
       display: grid;
       grid-template-columns: 2fr 1fr;
       grid-template-rows: 50px 2fr;
+      grid-gap: 0;
     }
     .imageContainer {
       grid-row: 1 / span 3;
       grid-column: 1;
+      height: 100%;
+      img {
+        width: 100%;
+      }
     }
     .caption {
-      grid-column: 2;
+      grid-column: 2 / span 3;
     }
     .close {
       grid-column: 2;

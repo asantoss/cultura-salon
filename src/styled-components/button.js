@@ -7,7 +7,7 @@ export const Button = styled.button`
   background-color: inherit;
   font-weight: 500;
   width: 100%;
-  margin: 1em;
+
   @media screen and (min-width: 700px) {
     max-width: 200px;
   }

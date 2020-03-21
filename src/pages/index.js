@@ -13,29 +13,32 @@ import IFrame from "../components/BookingFrame"
 const HeroContainer = styled.div`
   text-align: left;
   margin-bottom: 2em;
+  display: flex;
+  flex-direction: column;
   width: 100%;
   #hero {
+    height: 50%;
     margin-bottom: 1em;
     img {
       width: 100%;
+      height: 100%;
     }
   }
   #call-to-action {
     width: 100%;
-    padding: 2em;
+    padding: 1em;
     h1 {
       line-height: 1.125;
       font-weight: 500;
       letter-spacing: -0.8px;
     }
   }
-  @media screen and (min-width: 700px) {
-    display: flex;
+  @media screen and (min-width: 900px) {
+    flex-direction: row;
     width: 100%;
     align-items: center;
     height: fit-content;
     #hero {
-      display: inline-block;
       width: 50%;
       flex-basis: 50%;
       img {

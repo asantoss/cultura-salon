@@ -55,6 +55,7 @@ const InstagramFeedStyled = styled.div`
     width: 100%;
     h2 {
       font-size: 1.5rem;
+      font-weight: 500;
     }
     a {
       display: block;

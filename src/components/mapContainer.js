@@ -21,7 +21,7 @@ const MapContainer = styled.div`
       z-index: 1;
     }
   }
-  @media screen and (min-width: 700px) {
+  @media screen and (min-width: 900px) {
     width: 600px;
     height: 300px;
   }

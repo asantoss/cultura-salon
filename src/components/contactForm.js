@@ -5,7 +5,7 @@ import { Button } from "../styled-components/button"
 const ContactFormContainer = styled.div`
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 90%;
   margin: auto;
   text-align: center;
   justify-content: center;
