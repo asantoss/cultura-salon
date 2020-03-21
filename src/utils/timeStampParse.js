@@ -3,5 +3,5 @@ export default function timeStampParse(timestamp) {
   const month = date.toLocaleString("default", { month: "long" })
   const day = date.getDay()
   const year = date.getFullYear()
-  return `${month} ${day} ${year}`
+  return `${month} ${day}, ${year}`
 }
