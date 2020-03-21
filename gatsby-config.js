@@ -7,6 +7,7 @@ module.exports = {
     author: `@asantoss`,
   },
   plugins: [
+    `gatsby-plugin-material-ui`,
     "gatsby-plugin-instagram-embed",
     {
       resolve: `gatsby-source-instagram`,

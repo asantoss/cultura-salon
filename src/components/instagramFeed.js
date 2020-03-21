@@ -1,7 +1,9 @@
 import React, { useRef } from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import styled from "styled-components"
-
+import InstagramNode from "./instagramNode"
+import Img from "gatsby-image"
+import timeStampParse from "../utils/timeStampParse"
 const Feed = styled.div`
   flex-grow: 2;
   display: flex;
@@ -85,24 +87,45 @@ export default function InstagramFeed() {
       allInstaNode {
         edges {
           node {
+            id
             timestamp
             username
             caption
             thumbnails {
               src
             }
+            localFile {
+              childImageSharp {
+                fluid(maxWidth: 600, maxHeight: 700) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
           }
         }
       }
     }
   `)
+  console.log(data.allInstaNode.edges)
   const images = data.allInstaNode.edges
     .sort((a, b) => b.node.timestamp - a.node.timestamp)
     .map(({ node }, i) => {
+      const { fluid } = node.localFile.childImageSharp
       const { src } = node.thumbnails[1]
-      const { caption } = node
+      const { caption, id, timestamp } = node
+      const date = timeStampParse(timestamp)
+      console.log(date)
       if (src) {
-        return <img key={i} src={src} loading="lazy" alt={caption} />
+        return (
+          <InstagramNode
+            thumbnail={src}
+            id={id}
+            caption={caption}
+            timeStamp={date}
+          >
+            <Img fluid={fluid} />
+          </InstagramNode>
+        )
       }
       return null
     })
@@ -134,7 +157,7 @@ export default function InstagramFeed() {
         </div>
       </div>
       <div>
-        <Feed ref={carouselRef}>{images.sort()}</Feed>
+        <Feed ref={carouselRef}>{images}</Feed>
       </div>
     </InstagramFeedStyled>
   )
