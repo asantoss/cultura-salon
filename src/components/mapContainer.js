@@ -27,6 +27,15 @@ const MapContainer = styled.div`
   }
 `
 
+function encodeAddress(address) {
+  return `https://www.google.com/maps/place/${address
+    .split(" ")
+    .map(piece => {
+      return piece + "+"
+    })
+    .join("")}`
+}
+
 class Map extends Component {
   static defaultProps = {
     center: {
@@ -41,6 +50,7 @@ class Map extends Component {
       lng: null,
     },
     zoom: null,
+    directionsLink: null,
   }
   componentDidMount() {
     fetch(
@@ -51,8 +61,15 @@ class Map extends Component {
       })
       .then(res => {
         const { location } = res.results[0].geometry
+        debugger
         const zoom = 16
-        this.setState(state => ({ ...state, center: { ...location }, zoom }))
+        const directionsLink = encodeAddress(res.results[0].formatted_address)
+        this.setState(state => ({
+          ...state,
+          center: { ...location },
+          zoom,
+          directionsLink,
+        }))
       })
       .catch(e => {
         console.error("Could not reach google for your business address")
@@ -62,20 +79,23 @@ class Map extends Component {
   render() {
     return (
       // Important! Always set the container height explicitly
+
       <MapContainer>
-        <GoogleMapReact
-          bootstrapURLKeys={{ key: process.env.GATSBY_GOOGLE_API_KEY }}
-          defaultCenter={this.props.center}
-          center={this.state.center}
-          zoom={this.state.zoom}
-          defaultZoom={this.props.zoom}
-        >
-          <AnyReactComponent
-            lat={this.state.center.lat}
-            lng={this.state.center.lng}
-            text="My Marker"
-          />
-        </GoogleMapReact>
+        <a href={this.state.directionsLink}>
+          <GoogleMapReact
+            bootstrapURLKeys={{ key: process.env.GATSBY_GOOGLE_API_KEY }}
+            defaultCenter={this.props.center}
+            center={this.state.center}
+            zoom={this.state.zoom}
+            defaultZoom={this.props.zoom}
+          >
+            <AnyReactComponent
+              lat={this.state.center.lat}
+              lng={this.state.center.lng}
+              text="My Marker"
+            />
+          </GoogleMapReact>
+        </a>
       </MapContainer>
     )
   }
