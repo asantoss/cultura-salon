@@ -23,13 +23,13 @@ const IndexPage = () => {
       }
     }
   `)
-  const { address, author, mission } = data.site.siteMetadata
+  const { address, mission } = data.site.siteMetadata
   return (
     <Layout>
       <SEO title="Home" />
       <HeroContainer {...{ isBooking, setIsBooking, mission }} />
       <InstagramFeed />
-      <BusinessInfo address={address} />
+      <BusinessInfo {...{ address }} />
       <ContactForm />
     </Layout>
   )
