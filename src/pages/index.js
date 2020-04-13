@@ -5,7 +5,7 @@ import InstagramFeed from "../components/Frames/Instagram/instagramFeed"
 import { useStaticQuery, graphql } from "gatsby"
 import BusinessInfo from "../components/businessInfo"
 import ContactForm from "../components/contactForm"
-
+import FrameContextProvider from "../components/Frames/Context"
 import HeroContainer from "../components/Layout/heroContainer"
 
 const IndexPage = () => {
@@ -25,13 +25,15 @@ const IndexPage = () => {
   `)
   const { address, mission } = data.site.siteMetadata
   return (
-    <Layout>
-      <SEO title="Home" />
-      <HeroContainer {...{ isBooking, setIsBooking, mission }} />
-      <InstagramFeed />
-      <BusinessInfo {...{ address }} />
-      <ContactForm />
-    </Layout>
+    <FrameContextProvider>
+      <Layout>
+        <SEO title="Home" />
+        <HeroContainer {...{ isBooking, setIsBooking, mission }} />
+        <InstagramFeed />
+        <BusinessInfo {...{ address }} />
+        <ContactForm />
+      </Layout>
+    </FrameContextProvider>
   )
 }
 export default IndexPage

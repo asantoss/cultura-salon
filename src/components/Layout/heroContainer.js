@@ -1,24 +1,23 @@
-import React from "react"
+import React, { useContext } from "react"
 import styled from "styled-components"
 import Image from "./image"
 import { Button } from "../../styled-components/button"
-import { IFrame } from "../Frames/index"
-
+import { IFrame, FrameContext } from "../Frames/index"
 const HeroContainerStyled = styled.div`
   text-align: left;
   margin-bottom: 2em;
   display: flex;
   flex-direction: column;
   width: 100%;
+  [class=" gatsby-image-wrapper"] {
+    height: 500px;
+  }
   #hero {
     height: 60%;
     margin-bottom: 1em;
     img {
       width: 100%;
-      height: 100%;
-    }
-    .gastby-image-wrapper {
-      height: 100%;
+      height: 60%;
     }
   }
   #call-to-action {
@@ -56,6 +55,10 @@ const HeroContainerStyled = styled.div`
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+        .action-btn {
+          width: 100%;
+          flex-direction: row;
+        }
         button {
           margin: 1em 0;
         }
@@ -67,7 +70,18 @@ const HeroContainerStyled = styled.div`
   }
 `
 
-export default function HeroContainer({ isBooking, setIsBooking, mission }) {
+export default function HeroContainer({ mission }) {
+  const [_, dispatch] = useContext(FrameContext)
+  const handleClick = () => {
+    dispatch({
+      type: "OPEN",
+      payload: {
+        url:
+          "https://squareup.com/appointments/buyer/widget/fi2fsgd0yw00y2/VB5J8A254VE01",
+        name: "Booking",
+      },
+    })
+  }
   return (
     <HeroContainerStyled>
       <div id="hero">
@@ -76,14 +90,17 @@ export default function HeroContainer({ isBooking, setIsBooking, mission }) {
       <div id="call-to-action">
         <div>
           <p>{mission}</p>
-          <Button onClick={() => setIsBooking(!isBooking)}>Book Now</Button>
-          {isBooking && (
-            <IFrame
-              title="Booking"
-              url="https://squareup.com/appointments/buyer/widget/fi2fsgd0yw00y2/VB5J8A254VE01"
-              closeFunction={setIsBooking}
-            />
-          )}
+          <div class="action-btn">
+            <Button onClick={handleClick}>Book Now</Button>
+            <Button>
+              <a
+                style={{ textDecoration: "none", color: "inherit" }}
+                href="https://squareup.com/gift/H45BMVZP56ZBA/order"
+              >
+                e-Gift Card
+              </a>
+            </Button>
+          </div>
         </div>
       </div>
     </HeroContainerStyled>

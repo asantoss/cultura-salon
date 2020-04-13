@@ -1,6 +1,8 @@
 import { Link } from "gatsby"
-import React from "react"
+import React, { useContext } from "react"
 import styled from "styled-components"
+import { Button } from "../../styled-components/button"
+import { FrameContext } from "../Frames"
 
 const Container = styled.div`
   background: #fff;
@@ -13,7 +15,7 @@ const Container = styled.div`
     text-decoration: none;
     color: black;
     font-size: 0.8em;
-    font-weight: 300;
+    font-weight: 400;
   }
   h2 {
     margin-bottom: 0;
@@ -23,6 +25,7 @@ const Container = styled.div`
     font-size: 1.25rem;
   }
   .header-container {
+    margin: auto;
   }
   @media screen and (min-width: 700px) {
     text-align: center;
@@ -36,6 +39,16 @@ const Container = styled.div`
   }
 `
 const Header = ({ siteTitle }) => {
+  const [_, dispatch] = useContext(FrameContext)
+  const handleClick = () => {
+    dispatch({
+      type: "OPEN",
+      payload: {
+        url: "https://squareup.com/gift/H45BMVZP56ZBA/order",
+        name: "Purchasing Dialog",
+      },
+    })
+  }
   return (
     <Container>
       <div className="header-container">
