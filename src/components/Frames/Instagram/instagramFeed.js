@@ -109,7 +109,6 @@ export default function InstagramFeed() {
       }
     }
   `)
-  console.log(data.allInstaNode.edges)
   const images = data.allInstaNode.edges
     .sort((a, b) => b.node.timestamp - a.node.timestamp)
     .map(({ node }, i) => {

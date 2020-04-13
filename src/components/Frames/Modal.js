@@ -10,13 +10,10 @@ export const ModalStyled = styled.div`
   height: 100%;
   margin-bottom: 56px;
   background-color: rgb(0, 0, 0, 0.8);
-  /* display: flex;
-  justify-content: center; */
   position: fixed;
-  overflow: ${({ isScrollable }) => (isScrollable ? "scroll" : "hidden")};
 `
 
-const Modal = ({ children, isScrollable }) => {
+const Modal = ({ children }) => {
   const elRef = useRef(null)
   if (!elRef.current) {
     const div = document.createElement("div")
@@ -30,9 +27,7 @@ const Modal = ({ children, isScrollable }) => {
     }
   }, [])
   return createPortal(
-    <ModalStyled className="modal-open" isScrollable={isScrollable}>
-      {children}
-    </ModalStyled>,
+    <ModalStyled className="modal-open">{children}</ModalStyled>,
     elRef.current
   )
 }

@@ -9,6 +9,8 @@ module.exports = {
     igHandle: "cultura.salon.atl",
     author: `@asantoss`,
     siteUrl: `https://culturasalon.com`,
+    bookingSite: `https://squareup.com/appointments/buyer/widget/fi2fsgd0yw00y2/VB5J8A254VE01`,
+    saleSite: "https://squareup.com/gift/H45BMVZP56ZBA/order",
   },
   plugins: [
     `gatsby-plugin-sitemap`,

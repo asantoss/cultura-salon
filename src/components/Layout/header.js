@@ -1,8 +1,6 @@
 import { Link } from "gatsby"
-import React, { useContext } from "react"
+import React from "react"
 import styled from "styled-components"
-import { Button } from "../../styled-components/button"
-import { FrameContext } from "../Frames"
 
 const Container = styled.div`
   background: #fff;
@@ -39,16 +37,6 @@ const Container = styled.div`
   }
 `
 const Header = ({ siteTitle }) => {
-  const [_, dispatch] = useContext(FrameContext)
-  const handleClick = () => {
-    dispatch({
-      type: "OPEN",
-      payload: {
-        url: "https://squareup.com/gift/H45BMVZP56ZBA/order",
-        name: "Purchasing Dialog",
-      },
-    })
-  }
   return (
     <Container>
       <div className="header-container">

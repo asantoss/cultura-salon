@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React from "react"
 import Layout from "../components/Layout/layout"
 import SEO from "../components/seo"
 import InstagramFeed from "../components/Frames/Instagram/instagramFeed"
@@ -9,7 +9,6 @@ import FrameContextProvider from "../components/Frames/Context"
 import HeroContainer from "../components/Layout/heroContainer"
 
 const IndexPage = () => {
-  const [isBooking, setIsBooking] = useState(false)
   const data = useStaticQuery(graphql`
     query siteData {
       site {
@@ -19,16 +18,18 @@ const IndexPage = () => {
           description
           title
           mission
+          bookingSite
+          saleSite
         }
       }
     }
   `)
-  const { address, mission } = data.site.siteMetadata
+  const { address, mission, bookingSite, saleSite } = data.site.siteMetadata
   return (
     <FrameContextProvider>
       <Layout>
         <SEO title="Home" />
-        <HeroContainer {...{ isBooking, setIsBooking, mission }} />
+        <HeroContainer {...{ mission, bookingSite, saleSite }} />
         <InstagramFeed />
         <BusinessInfo {...{ address }} />
         <ContactForm />

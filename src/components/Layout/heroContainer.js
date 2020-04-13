@@ -2,7 +2,7 @@ import React, { useContext } from "react"
 import styled from "styled-components"
 import Image from "./image"
 import { Button } from "../../styled-components/button"
-import { IFrame, FrameContext } from "../Frames/index"
+import { FrameContext } from "../Frames/index"
 const HeroContainerStyled = styled.div`
   text-align: left;
   margin-bottom: 2em;
@@ -70,14 +70,13 @@ const HeroContainerStyled = styled.div`
   }
 `
 
-export default function HeroContainer({ mission }) {
-  const [_, dispatch] = useContext(FrameContext)
+export default function HeroContainer({ mission, bookingSite, saleSite }) {
+  const { dispatch } = useContext(FrameContext)
   const handleClick = () => {
     dispatch({
       type: "OPEN",
       payload: {
-        url:
-          "https://squareup.com/appointments/buyer/widget/fi2fsgd0yw00y2/VB5J8A254VE01",
+        url: bookingSite,
         name: "Booking",
       },
     })
@@ -95,7 +94,7 @@ export default function HeroContainer({ mission }) {
             <Button>
               <a
                 style={{ textDecoration: "none", color: "inherit" }}
-                href="https://squareup.com/gift/H45BMVZP56ZBA/order"
+                href={saleSite}
               >
                 e-Gift Card
               </a>

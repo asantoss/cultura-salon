@@ -10,7 +10,6 @@ const initialState = {
 export const FrameContext = createContext()
 
 function reducer(state = initialState, action) {
-  console.log("here")
   const { type, payload } = action
   switch (type) {
     case "OPEN":
@@ -32,7 +31,7 @@ function reducer(state = initialState, action) {
 function FrameContextProvider({ children }) {
   const [state, dispatch] = useReducer(reducer, initialState)
   return (
-    <FrameContext.Provider value={[state, dispatch]}>
+    <FrameContext.Provider value={{ state, dispatch }}>
       {children}
       {state.isOpen && (
         <IFrame
