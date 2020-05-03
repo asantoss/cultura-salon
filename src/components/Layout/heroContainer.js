@@ -1,6 +1,6 @@
 import React, { useContext } from "react"
 import styled from "styled-components"
-import Image from "./image"
+import Image from "./heroImage"
 import { Button } from "../../styled-components/button"
 import { FrameContext } from "../Frames/index"
 const HeroContainerStyled = styled.div`
