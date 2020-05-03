@@ -13,6 +13,12 @@ module.exports = {
     saleSite: "https://squareup.com/gift/H45BMVZP56ZBA/order",
   },
   plugins: [
+    {
+      resolve: "gatsby-plugin-google-analytics",
+      options: {
+        trackingId: "UA-145109659-1",
+      },
+    },
     `gatsby-plugin-sitemap`,
     `gatsby-plugin-material-ui`,
     "gatsby-plugin-instagram-embed",
