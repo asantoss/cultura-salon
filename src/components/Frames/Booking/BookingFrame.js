@@ -44,6 +44,8 @@ const BookingFrame = styled.div`
     animation: fadeIn 1s ease-in;
   }
   .frame {
+    background-color: white;
+
     border: none;
     width: 100%;
     height: 100%;
