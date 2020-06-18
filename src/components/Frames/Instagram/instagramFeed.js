@@ -114,7 +114,6 @@ const fetchInstagramPhotos = async (accountUrl, amount) => {
 export default function InstagramFeed({ igHandle, imagesToPull }) {
   const carouselRef = useRef()
   const [state, setstate] = useState({ loading: false, photos: [] })
-
   useEffect(() => {
     fetchInstagramPhotos(
       `https://www.instagram.com/${igHandle}`,
@@ -163,7 +162,7 @@ export default function InstagramFeed({ igHandle, imagesToPull }) {
             return (
               <InstagramNode
                 thumbnail={thumbnailUrl}
-                id={i}
+                key={i}
                 caption={caption}
                 timeStamp={date}
               >

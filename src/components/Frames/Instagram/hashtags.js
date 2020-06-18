@@ -14,8 +14,9 @@ export default function CaptionTag({ caption }) {
     <>
       <p>
         {caption.slice(0, firstTag)}
-        {tags.map(tag => (
+        {tags.map((tag, i) => (
           <a
+            key={i}
             href={`https://www.instagram.com/explore/tags/${
               tag.split("#")[1]
             }/`}

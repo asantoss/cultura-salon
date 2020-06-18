@@ -89,7 +89,7 @@ export default function HeroContainer({ mission, bookingSite, saleSite }) {
       <div id="call-to-action">
         <div>
           <p>{mission}</p>
-          <div class="action-btn">
+          <div className="action-btn">
             <Button onClick={handleClick}>Book Now</Button>
             <Button>
               <a

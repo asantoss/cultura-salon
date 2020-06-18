@@ -4,6 +4,8 @@ import styled from "styled-components"
 import IconButton from "@material-ui/core/IconButton"
 import CloseSharpIcon from "@material-ui/icons/CloseSharp"
 import CaptionTags from "./hashtags"
+import { useRef } from "react"
+import { useOnClickOutside } from "../../../hooks/clickOutside"
 const IGPostContainer = styled.div`
   @keyframes fadeIn {
     from {
@@ -100,13 +102,15 @@ export default function InstagramNode({
   children,
   timeStamp,
 }) {
+  const node = useRef()
   const [isOpen, setIsOpen] = useState(false)
+  useOnClickOutside(node, () => setIsOpen(false))
   return (
     <>
       <img onClick={() => setIsOpen(true)} src={thumbnail} alt={caption} />
       {isOpen && (
         <Modal isScrollable={true}>
-          <IGPostContainer>
+          <IGPostContainer ref={node}>
             <div className="mainContainer">
               <div className="close">
                 <IconButton onClick={() => setIsOpen(!isOpen)}>
