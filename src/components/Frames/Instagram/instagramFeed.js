@@ -1,4 +1,4 @@
-import React, { useRef } from "react"
+import React, { useRef, useEffect, useState } from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import styled from "styled-components"
 import InstagramNode from "./instagramNode"
@@ -7,6 +7,8 @@ import timeStampParse from "../../../utils/timeStampParse"
 import IconButton from "@material-ui/core/IconButton"
 import ArrowBackIosSharpIcon from "@material-ui/icons/ArrowBackIosSharp"
 import ArrowForwardIosSharpIcon from "@material-ui/icons/ArrowForwardIosSharp"
+import axios from "axios"
+
 const Feed = styled.div`
   flex-grow: 2;
   display: flex;
@@ -83,53 +85,50 @@ const InstagramFeedStyled = styled.div`
     }
   }
 `
-export default function InstagramFeed() {
-  const carouselRef = useRef()
-  const data = useStaticQuery(graphql`
-    query IGQuery {
-      allInstaNode {
-        edges {
-          node {
-            id
-            timestamp
-            username
-            caption
-            thumbnails {
-              src
-            }
-            localFile {
-              childImageSharp {
-                fluid(maxWidth: 600, maxHeight: 700) {
-                  ...GatsbyImageSharpFluid
-                }
-              }
-            }
-          }
-        }
-      }
+const instagramRegExp = new RegExp(
+  /<script type="text\/javascript">window\._sharedData = (.*);<\/script>/
+)
+
+const fetchInstagramPhotos = async (accountUrl, amount) => {
+  const response = await axios.get(accountUrl)
+  const json = JSON.parse(response.data.match(instagramRegExp)[1])
+  const edges = json.entry_data.ProfilePage[0].graphql.user.edge_owner_to_timeline_media.edges.splice(
+    0,
+    amount
+  )
+  const photos = edges.map(({ node }) => {
+    return {
+      url: `https://www.instagram.com/p/${node.shortcode}/`,
+      timestamp: node.taken_at_timestamp,
+      thumbnailUrl: node.thumbnail_src,
+      displayUrl: node.display_url,
+      caption:
+        node.edge_media_to_caption.edges.length > 0
+          ? node.edge_media_to_caption.edges[0].node.text
+          : "",
     }
-  `)
-  const images = data.allInstaNode.edges
-    .sort((a, b) => b.node.timestamp - a.node.timestamp)
-    .map(({ node }, i) => {
-      const { fluid } = node.localFile.childImageSharp
-      const { src } = node.thumbnails[1]
-      const { caption, id, timestamp } = node
-      const date = timeStampParse(timestamp)
-      if (src) {
-        return (
-          <InstagramNode
-            thumbnail={src}
-            id={id}
-            caption={caption}
-            timeStamp={date}
-          >
-            <Img fluid={fluid} />
-          </InstagramNode>
-        )
-      }
-      return null
+  })
+  return photos
+}
+
+export default function InstagramFeed({ igHandle, imagesToPull }) {
+  const carouselRef = useRef()
+  const [state, setstate] = useState({ loading: false, photos: [] })
+
+  useEffect(() => {
+    fetchInstagramPhotos(
+      `https://www.instagram.com/${igHandle}`,
+      imagesToPull
+    ).then(photos => {
+      setstate(s => ({ loading: false, photos }))
+      console.log(photos)
     })
+  }, [igHandle])
+
+  if (state.loading) {
+    return <div className="loader"></div>
+  }
+
   const handleScroll = direction => {
     const carousel = carouselRef.current
     if (direction) {
@@ -138,14 +137,13 @@ export default function InstagramFeed() {
       return (carousel.scrollLeft -= 708)
     }
   }
-  const igName = data.allInstaNode.edges[0].node.username
   return (
     <InstagramFeedStyled>
       <div className="feed-header">
         <h2>
           Explore our Instagram
-          <a target="__blank" href={`https://www.instagram.com/${igName}/`}>
-            @{igName}
+          <a target="__blank" href={`https://www.instagram.com/${igHandle}/`}>
+            @{igHandle}
           </a>
         </h2>
         <div>
@@ -158,7 +156,22 @@ export default function InstagramFeed() {
         </div>
       </div>
       <div>
-        <Feed ref={carouselRef}>{images}</Feed>
+        <Feed ref={carouselRef}>
+          {state.photos.map((photo, i) => {
+            const { thumbnailUrl, url, displayUrl, caption, timestamp } = photo
+            const date = timeStampParse(timestamp)
+            return (
+              <InstagramNode
+                thumbnail={thumbnailUrl}
+                id={i}
+                caption={caption}
+                timeStamp={date}
+              >
+                <img src={displayUrl} />
+              </InstagramNode>
+            )
+          })}
+        </Feed>
       </div>
     </InstagramFeedStyled>
   )

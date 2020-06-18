@@ -17,13 +17,12 @@ const IGPostContainer = styled.div`
   border-radius: 10px;
   animation: fadeIn 0.5s ease-in;
   margin-top: 1em;
-  height: fit-content;
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: "Karla", sans-serif;
   .mainContainer {
-    width: 100%;
+    max-width: 75%;
     background-color: #f8f8f8;
     border-top-left-radius: 16px;
     border-top-right-radius: 16px;
@@ -31,12 +30,10 @@ const IGPostContainer = styled.div`
     display: flex;
   }
   .imageContainer {
-    height: 50%;
-    width: 100%;
+    display: block;
+    height: 100%;
+    max-width: 100%;
     cursor: pointer;
-    .gatsby-image-container {
-      margin: 0;
-    }
   }
   .caption {
     background-color: white;
@@ -67,7 +64,7 @@ const IGPostContainer = styled.div`
     margin: 0 auto;
     border-bottom: 1px solid #dee0e1;
   }
-  @media screen and (min-width: 960px) {
+  @media screen and (min-width: 750px) {
     position: relative;
     margin: auto;
     width: 960px;
@@ -80,7 +77,7 @@ const IGPostContainer = styled.div`
       grid-gap: 0;
     }
     .imageContainer {
-      grid-row: 1 / span 3;
+      grid-row: 2 / span 3;
       grid-column: 1;
       height: 100%;
       img {
@@ -97,9 +94,8 @@ const IGPostContainer = styled.div`
   }
 `
 export default function InstagramNode({
-  fluid,
   thumbnail,
-  id,
+  url,
   caption,
   children,
   timeStamp,
@@ -117,11 +113,10 @@ export default function InstagramNode({
                   <CloseSharpIcon />
                 </IconButton>
               </div>
-              <div className="imageContainer">
-                <a target="__blank" href={`https://instagram.com/p/${id}`}>
-                  {children}
-                </a>
-              </div>
+
+              <a className="imageContainer" target="__blank" href={url}>
+                {children}
+              </a>
               <div className="caption">
                 <p>{timeStamp}</p>
                 <CaptionTags {...{ caption }} />

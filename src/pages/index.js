@@ -20,17 +20,26 @@ const IndexPage = () => {
           mission
           bookingSite
           saleSite
+          igHandle
+          imagesToPull
         }
       }
     }
   `)
-  const { address, mission, bookingSite, saleSite } = data.site.siteMetadata
+  const {
+    address,
+    mission,
+    bookingSite,
+    saleSite,
+    igHandle,
+    imagesToPull,
+  } = data.site.siteMetadata
   return (
     <FrameContextProvider>
       <Layout>
         <SEO title="Home" />
         <HeroContainer {...{ mission, bookingSite, saleSite }} />
-        <InstagramFeed />
+        <InstagramFeed {...{ igHandle, imagesToPull }} />
         <BusinessInfo {...{ address }} />
         <ContactForm />
       </Layout>

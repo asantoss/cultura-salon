@@ -7,6 +7,7 @@ module.exports = {
     address: `2570 Blackmon Dr,Suite 440,
     Decatur, GA 30033`,
     igHandle: "cultura.salon.atl",
+    imagesToPull: 12,
     author: `@asantoss`,
     siteUrl: `https://culturasalon.com`,
     bookingSite: `https://squareup.com/appointments/buyer/widget/fi2fsgd0yw00y2/VB5J8A254VE01`,
