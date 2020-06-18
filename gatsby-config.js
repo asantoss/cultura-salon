@@ -31,16 +31,6 @@ module.exports = {
     },
     `gatsby-plugin-sitemap`,
     `gatsby-plugin-material-ui`,
-    "gatsby-plugin-instagram-embed",
-    {
-      resolve: `gatsby-source-instagram`,
-      options: {
-        username: `cultura.salon.atl`,
-        instagram_id: "274302406892373",
-        paginate: 50,
-        maxPosts: 100,
-      },
-    },
     `gatsby-plugin-react-helmet`,
     {
       resolve: "gatsby-source-filesystem",
