@@ -5,7 +5,7 @@ import IconButton from "@material-ui/core/IconButton"
 import CloseSharpIcon from "@material-ui/icons/CloseSharp"
 import CaptionTags from "./hashtags"
 import { useRef } from "react"
-import { useOnClickOutside } from "../../../hooks/clickOutside"
+import useClickOutside from "../../../hooks/clickOutside"
 const IGPostContainer = styled.div`
   @keyframes fadeIn {
     from {
@@ -24,12 +24,12 @@ const IGPostContainer = styled.div`
   justify-content: center;
   font-family: "Karla", sans-serif;
   .mainContainer {
-    max-width: 75%;
     background-color: #f8f8f8;
     border-top-left-radius: 16px;
     border-top-right-radius: 16px;
     flex-direction: column;
     display: flex;
+    padding: 0.25rem;
   }
   .imageContainer {
     display: block;
@@ -38,9 +38,8 @@ const IGPostContainer = styled.div`
     cursor: pointer;
   }
   .caption {
-    background-color: white;
+    background-color: #f8f8f8;
     color: black;
-    margin: 1.5em 0;
     padding: 0 1.5em;
     white-space: pre-line;
     display: flex;
@@ -64,14 +63,13 @@ const IGPostContainer = styled.div`
     color: grey;
     width: 100%;
     margin: 0 auto;
-    border-bottom: 1px solid #dee0e1;
   }
   @media screen and (min-width: 750px) {
-    position: relative;
-    margin: auto;
-    width: 960px;
-    transform: translateY(20%);
+    position: fixed;
+    margin: 1rem auto;
     .mainContainer {
+      width: 75%;
+      height: 75vh;
       margin: auto;
       display: grid;
       grid-template-columns: 2fr 1fr;
@@ -83,11 +81,14 @@ const IGPostContainer = styled.div`
       grid-column: 1;
       height: 100%;
       img {
+        height: 100%;
         width: 100%;
       }
     }
     .caption {
       grid-column: 2 / span 3;
+      overflow-y: scroll;
+      height: 100%;
     }
     .close {
       grid-column: 2;
@@ -104,14 +105,14 @@ export default function InstagramNode({
 }) {
   const node = useRef()
   const [isOpen, setIsOpen] = useState(false)
-  useOnClickOutside(node, () => setIsOpen(false))
+  useClickOutside(node, () => setIsOpen(false))
   return (
     <>
       <img onClick={() => setIsOpen(true)} src={thumbnail} alt={caption} />
       {isOpen && (
         <Modal isScrollable={true}>
-          <IGPostContainer ref={node}>
-            <div className="mainContainer">
+          <IGPostContainer>
+            <div className="mainContainer" ref={node}>
               <div className="close">
                 <IconButton onClick={() => setIsOpen(!isOpen)}>
                   <CloseSharpIcon />

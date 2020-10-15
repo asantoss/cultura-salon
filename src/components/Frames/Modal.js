@@ -3,7 +3,7 @@ import { createPortal } from "react-dom"
 import styled from "styled-components"
 
 export const ModalStyled = styled.div`
-  z-index: 5;
+  z-index: 999;
   top: 0;
   left: 0;
   width: 100%;
@@ -11,6 +11,7 @@ export const ModalStyled = styled.div`
   margin-bottom: 56px;
   background-color: rgb(0, 0, 0, 0.8);
   position: fixed;
+  overflow-y: scroll;
 `
 
 const Modal = ({ children }) => {
@@ -21,8 +22,14 @@ const Modal = ({ children }) => {
   }
   useEffect(() => {
     const modalRoot = document.getElementById("modal")
+    const appRoot = document.querySelector("html")
+    const feedCarousel = document.getElementById("feed_carousel")
+    appRoot.style.overflowY = "hidden"
+    feedCarousel.style.overflowX = "hidden"
     modalRoot.appendChild(elRef.current)
     return () => {
+      appRoot.style.overflowY = "scroll"
+      feedCarousel.style.overflowX = "scroll"
       modalRoot.removeChild(elRef.current)
     }
   }, [])

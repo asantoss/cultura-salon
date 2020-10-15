@@ -1,8 +1,6 @@
 import React, { useRef, useEffect, useState } from "react"
-import { useStaticQuery, graphql } from "gatsby"
 import styled from "styled-components"
 import InstagramNode from "./instagramNode"
-import Img from "gatsby-image"
 import timeStampParse from "../../../utils/timeStampParse"
 import IconButton from "@material-ui/core/IconButton"
 import ArrowBackIosSharpIcon from "@material-ui/icons/ArrowBackIosSharp"
@@ -48,7 +46,7 @@ const InstagramFeedStyled = styled.div`
   flex-direction: column;
   margin: 2em 0;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
   width: 100%;
   .feed-header {
     font-size: 1.25rem;
@@ -155,7 +153,7 @@ export default function InstagramFeed({ igHandle, imagesToPull }) {
         </div>
       </div>
       <div>
-        <Feed ref={carouselRef}>
+        <Feed ref={carouselRef} id="feed_carousel">
           {state.photos.map((photo, i) => {
             const { thumbnailUrl, url, displayUrl, caption, timestamp } = photo
             const date = timeStampParse(timestamp)
@@ -166,7 +164,7 @@ export default function InstagramFeed({ igHandle, imagesToPull }) {
                 caption={caption}
                 timeStamp={date}
               >
-                <img src={displayUrl} />
+                <img className="instagram_image" src={displayUrl} />
               </InstagramNode>
             )
           })}
