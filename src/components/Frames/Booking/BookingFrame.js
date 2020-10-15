@@ -1,10 +1,9 @@
-import React from "react"
+import React, { useRef, useState } from "react"
 import Modal from "../Modal"
-import { useState } from "react"
 import styled from "styled-components"
 import IconButton from "@material-ui/core/IconButton"
 import CloseSharpIcon from "@material-ui/icons/CloseSharp"
-
+import useClickOutside from "../../../hooks/clickOutside"
 const BookingFrame = styled.div`
   height: 90%;
   .loader {
@@ -81,6 +80,8 @@ const BookingFrame = styled.div`
 
 export default function IFrame({ closeFunction, url, title }) {
   const [isLoading, setIsLoading] = useState(true)
+  const node = useRef()
+  useClickOutside(node, () => closeFunction(false))
   return (
     <Modal isScrollable={false}>
       <BookingFrame>
@@ -102,6 +103,7 @@ export default function IFrame({ closeFunction, url, title }) {
           <div className="loader"></div>
         </div>
         <iframe
+          ref={node}
           className="frame"
           onLoad={() => setIsLoading(false)}
           style={{ display: isLoading ? "none" : "block" }}
