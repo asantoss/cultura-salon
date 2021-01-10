@@ -72,12 +72,12 @@ const HeroContainerStyled = styled.div`
 
 export default function HeroContainer({ mission, bookingSite, saleSite }) {
   const { dispatch } = useContext(FrameContext)
-  const handleClick = () => {
+  const handleClick = (url, name) => {
     dispatch({
       type: "OPEN",
       payload: {
-        url: bookingSite,
-        name: "Booking",
+        url: url,
+        name: name,
       },
     })
   }
@@ -90,14 +90,11 @@ export default function HeroContainer({ mission, bookingSite, saleSite }) {
         <div>
           <p>{mission}</p>
           <div className="action-btn">
-            <Button onClick={handleClick}>Book Now</Button>
-            <Button>
-              <a
-                style={{ textDecoration: "none", color: "inherit" }}
-                href={saleSite}
-              >
-                e-Gift Card
-              </a>
+            <Button onClick={() => handleClick(bookingSite, "booking")}>
+              Book Now
+            </Button>
+            <Button onClick={() => handleClick(saleSite, "GiftCards")}>
+              e-Gift Card
             </Button>
           </div>
         </div>

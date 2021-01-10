@@ -22,6 +22,44 @@ const IndexPage = () => {
           saleSite
           igHandle
           imagesToPull
+          cancelPolicy
+          schedule {
+            friday {
+              available
+              from
+              to
+            }
+            monday {
+              available
+              from
+              to
+            }
+            saturday {
+              available
+              from
+              to
+            }
+            sunday {
+              available
+              from
+              to
+            }
+            thursday {
+              available
+              from
+              to
+            }
+            tuesday {
+              available
+              from
+              to
+            }
+            wednesday {
+              available
+              from
+              to
+            }
+          }
         }
       }
     }
@@ -33,6 +71,8 @@ const IndexPage = () => {
     saleSite,
     igHandle,
     imagesToPull,
+    cancelPolicy,
+    schedule,
   } = data.site.siteMetadata
   return (
     <FrameContextProvider>
@@ -40,7 +80,7 @@ const IndexPage = () => {
         <SEO title="Home" />
         <HeroContainer {...{ mission, bookingSite, saleSite }} />
         <InstagramFeed {...{ igHandle, imagesToPull }} />
-        <BusinessInfo {...{ address }} />
+        <BusinessInfo {...{ address, cancelPolicy, schedule }} />
         <ContactForm />
       </Layout>
     </FrameContextProvider>

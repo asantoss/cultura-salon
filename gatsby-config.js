@@ -10,8 +10,46 @@ module.exports = {
     imagesToPull: 12,
     author: `@asantoss`,
     siteUrl: `https://culturasalon.com`,
-    bookingSite: `https://squareup.com/appointments/buyer/widget/fi2fsgd0yw00y2/VB5J8A254VE01`,
-    saleSite: "https://squareup.com/gift/H45BMVZP56ZBA/order",
+    bookingSite: `https://culturasalon.glossgenius.com/services`,
+    saleSite: "https://culturasalon.glossgenius.com/gift-cards",
+    schedule: {
+      monday: {
+        available: false,
+        from: "",
+        to: "",
+      },
+      tuesday: {
+        available: true,
+        from: "10:00 AM",
+        to: "8:00 PM",
+      },
+      wednesday: {
+        available: true,
+        from: "10:00 AM",
+        to: "8:00 PM",
+      },
+      thursday: {
+        available: true,
+        from: "10:00 AM",
+        to: "8:00 PM",
+      },
+      friday: {
+        available: true,
+        from: "10:00 AM",
+        to: "5:00 PM",
+      },
+      saturday: {
+        available: false,
+        from: "",
+        to: "",
+      },
+      sunday: {
+        available: false,
+        from: "",
+        to: "",
+      },
+    },
+    cancelPolicy: `If you need to cancel your appointment, it is required to give 48 hours notice prior to your appoinment. If you cancel outside of the 48 hour window, 50% of the service will be charged to the card on file.`,
   },
   plugins: [
     {

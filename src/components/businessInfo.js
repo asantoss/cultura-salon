@@ -22,17 +22,23 @@ const BusinessInfoContainer = styled.div`
   }
   .location-hours {
     display: flex;
-    flex-direction: column;
-    margin: 2em 2em;
-    div {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
+    padding: 2em;
+    justify-content: space-between;
+
     .address,
-    .hours {
+    .hours,
+    .policy {
       line-height: 2;
       font-size: 1rem;
+      flex-basis: 33%;
+      margin: 0 2rem;
+    }
+    .address {
+      display: flex;
+      flex-direction: column;
+    }
+    .days {
+      text-transform: capitalize;
     }
   }
   .directionsLink {
@@ -69,37 +75,66 @@ function encodeAddress(address) {
     })
     .join("")}`
 }
-export default function BusinessInfo({ address }) {
+export default function BusinessInfo({ address, cancelPolicy, schedule }) {
+  const sorter = {
+    // "sunday": 0, // << if sunday is first day of week
+    monday: 1,
+    tuesday: 2,
+    wednesday: 3,
+    thursday: 4,
+    friday: 5,
+    saturday: 6,
+    sunday: 7,
+  }
+  function sortByDay(a, b) {
+    let day1 = a.toLowerCase()
+    let day2 = b.toLowerCase()
+    return sorter[day1] - sorter[day2]
+  }
   return (
     <BusinessInfoContainer>
       <Map address={address} />
       <div className="location-hours">
-        <h3>Location & Hours</h3>
-        <div>
-          <div className="hours">
-            <p>
-              Cultura Salon
-              <br /> 2570 Blackmon Dr. ,Suite 440, <br /> Decatur, GA 30033
-              <br />
-              located inside Salon Lofts
-              <br /> Loft #15
-              <br /> (404) 585-0795
-            </p>
-            <h3 className="directionsLink">
-              <a href={encodeAddress(address)}>Get Directions</a>
-            </h3>
-          </div>
-          <div className="address">
-            <p>
-              Monday Closed
-              <br /> Tuesday 10:00am - 6:00pm <br /> Wednesday 10:00am - 6:00pm
-              <br />
-              Thursday Closed
-              <br /> Friday 10:00am - 5:00pm
-              <br /> Saturday 9:00am - 4:00pm <br />
-              Sunday Closed
-            </p>
-          </div>
+        <div className="address">
+          <h3>Address</h3>
+          <p>
+            Cultura Salon
+            <br /> 2570 Blackmon Dr. ,Suite 440, <br /> Decatur, GA 30033
+            <br />
+            located inside Salon Lofts
+            <br /> Loft #15
+            <br /> (404) 585-0795
+          </p>
+          <h3 className="directionsLink">
+            <a href={encodeAddress(address)}>Get Directions</a>
+          </h3>
+        </div>
+        <div className="policy">
+          <h3>Cancellation Policy</h3>
+          <p>{cancelPolicy}</p>
+        </div>
+        <div className="hours">
+          <h3>Hours</h3>
+          <p className="days">
+            {Object.keys(schedule)
+              .sort(sortByDay)
+              .map(day => {
+                const { available, from, to } = schedule[day]
+                if (available) {
+                  return (
+                    <span key={day}>
+                      {day} {from} - {to} <br />
+                    </span>
+                  )
+                } else {
+                  return (
+                    <span key={day}>
+                      {day} Closed <br />
+                    </span>
+                  )
+                }
+              })}
+          </p>
         </div>
       </div>
     </BusinessInfoContainer>

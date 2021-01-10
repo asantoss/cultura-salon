@@ -90,10 +90,13 @@ const instagramRegExp = new RegExp(
 const fetchInstagramPhotos = async (accountUrl, amount) => {
   const response = await axios.get(accountUrl)
   const json = JSON.parse(response.data.match(instagramRegExp)[1])
-  const edges = json.entry_data.ProfilePage[0].graphql.user.edge_owner_to_timeline_media.edges.splice(
-    0,
-    amount
-  )
+  let edges = []
+  if (json.entry_data.ProfilePage?.length) {
+    edges = json.entry_data?.ProfilePage[0].graphql?.user?.edge_owner_to_timeline_media?.edges?.splice(
+      0,
+      amount
+    )
+  }
   const photos = edges.map(({ node }) => {
     return {
       url: `https://www.instagram.com/p/${node.shortcode}/`,
