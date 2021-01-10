@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from "react"
+import React, { useRef, useState } from "react"
 import styled from "styled-components"
 import InstagramNode from "./instagramNode"
 import timeStampParse from "../../../utils/timeStampParse"
@@ -6,12 +6,13 @@ import IconButton from "@material-ui/core/IconButton"
 import ArrowBackIosSharpIcon from "@material-ui/icons/ArrowBackIosSharp"
 import ArrowForwardIosSharpIcon from "@material-ui/icons/ArrowForwardIosSharp"
 import axios from "axios"
-
+import { useStaticQuery, graphql } from "gatsby"
+import Img from "gatsby-image"
 const Feed = styled.div`
   flex-grow: 2;
   display: flex;
   overflow-x: scroll;
-  max-width: 100%;
+  width: 100%;
   img {
     margin: 1em;
     cursor: pointer;
@@ -83,47 +84,54 @@ const InstagramFeedStyled = styled.div`
     }
   }
 `
-const instagramRegExp = new RegExp(
-  /<script type="text\/javascript">window\._sharedData = (.*);<\/script>/
-)
 
-const fetchInstagramPhotos = async (accountUrl, amount) => {
-  const response = await axios.get(accountUrl)
-  const json = JSON.parse(response.data.match(instagramRegExp)[1])
-  let edges = []
-  if (json.entry_data.ProfilePage?.length) {
-    edges = json.entry_data?.ProfilePage[0].graphql?.user?.edge_owner_to_timeline_media?.edges?.splice(
-      0,
-      amount
-    )
-  }
-  const photos = edges.map(({ node }) => {
-    return {
-      url: `https://www.instagram.com/p/${node.shortcode}/`,
-      timestamp: node.taken_at_timestamp,
-      thumbnailUrl: node.thumbnail_src,
-      displayUrl: node.display_url,
-      caption:
-        node.edge_media_to_caption.edges.length > 0
-          ? node.edge_media_to_caption.edges[0].node.text
-          : "",
-    }
-  })
-  return photos
-}
-
-export default function InstagramFeed({ igHandle, imagesToPull }) {
+export default function InstagramFeed({ igHandle, igAccessToken }) {
   const carouselRef = useRef()
   const [state, setstate] = useState({ loading: false, photos: [] })
-  useEffect(() => {
-    fetchInstagramPhotos(
-      `https://www.instagram.com/${igHandle}`,
-      imagesToPull
-    ).then(photos => {
-      setstate(s => ({ loading: false, photos }))
-      console.log(photos)
+  const data = useStaticQuery(graphql`
+    query IGQuery {
+      allInstagramContent {
+        edges {
+          node {
+            id
+            timestamp
+            media_url
+            caption
+            permalink
+            localImage {
+              childImageSharp {
+                fluid(maxWidth: 600, maxHeight: 700) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  `)
+  const images = data.allInstagramContent.edges
+    .sort((a, b) => a.node.timestamp - b.node.timestamp)
+    .slice(0, 15)
+    .map(({ node }) => {
+      const { fluid } = node.localImage.childImageSharp
+      const { caption, permalink, timestamp, media_url } = node
+      const date = timeStampParse(timestamp)
+      if (media_url) {
+        return (
+          <InstagramNode
+            thumbnail={media_url}
+            igAccessToken={igAccessToken}
+            id={permalink}
+            caption={caption}
+            timeStamp={date}
+          >
+            <Img fluid={fluid} />
+          </InstagramNode>
+        )
+      }
+      return null
     })
-  }, [igHandle])
 
   if (state.loading) {
     return <div className="loader"></div>
@@ -155,24 +163,10 @@ export default function InstagramFeed({ igHandle, imagesToPull }) {
           </IconButton>
         </div>
       </div>
-      <div>
-        <Feed ref={carouselRef} id="feed_carousel">
-          {state.photos.map((photo, i) => {
-            const { thumbnailUrl, url, displayUrl, caption, timestamp } = photo
-            const date = timeStampParse(timestamp)
-            return (
-              <InstagramNode
-                thumbnail={thumbnailUrl}
-                key={i}
-                caption={caption}
-                timeStamp={date}
-              >
-                <img className="instagram_image" src={displayUrl} />
-              </InstagramNode>
-            )
-          })}
-        </Feed>
-      </div>
+
+      <Feed ref={carouselRef} id="feed_carousel">
+        {images}
+      </Feed>
     </InstagramFeedStyled>
   )
 }

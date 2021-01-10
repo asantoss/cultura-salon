@@ -1,4 +1,5 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
+import axios from "axios"
 import Modal from "../Modal"
 import styled from "styled-components"
 import IconButton from "@material-ui/core/IconButton"
@@ -15,94 +16,28 @@ const IGPostContainer = styled.div`
       opacity: 1;
     }
   }
-  width: 100%;
-  border-radius: 10px;
-  animation: fadeIn 0.5s ease-in;
-  margin-top: 1em;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: "Karla", sans-serif;
-  .mainContainer {
-    background-color: #f8f8f8;
-    border-top-left-radius: 16px;
-    border-top-right-radius: 16px;
-    flex-direction: column;
-    display: flex;
-    padding: 0.25rem;
-  }
-  .imageContainer {
-    display: block;
-    height: 100%;
-    max-width: 100%;
-    cursor: pointer;
-  }
-  .caption {
-    background-color: #f8f8f8;
-    color: black;
-    padding: 0 1.5em;
-    white-space: pre-line;
-    display: flex;
-    font-size: 1em;
-    flex-direction: column;
-    font-weight: 300;
-    line-height: 1.31;
-    a {
-      display: inline;
-      text-decoration: none;
-      color: #003569;
+  position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  text-align: center;
+  iframe {
+    & > body {
+      overflow: scroll !important;
     }
+    border: 1px solid black;
   }
-  .close {
-    border-top-left-radius: 16px;
-    border-top-right-radius: 16px;
-    display: flex;
-    justify-content: flex-end;
-    background-color: #f8f8f8;
-    font-size: 25px;
-    color: grey;
-    width: 100%;
-    margin: 0 auto;
+  .mainContainer {
+    width: 50%;
+    height: 50%;
   }
   @media screen and (min-width: 750px) {
     position: fixed;
     margin: 1rem auto;
-    .mainContainer {
-      width: 75%;
-      height: 75vh;
-      margin: auto;
-      display: grid;
-      grid-template-columns: 2fr 1fr;
-      grid-template-rows: 50px 2fr;
-      grid-gap: 0;
-    }
-    .imageContainer {
-      grid-row: 2 / span 3;
-      grid-column: 1;
-      height: 100%;
-      img {
-        height: 100%;
-        width: 100%;
-      }
-    }
-    .caption {
-      grid-column: 2 / span 3;
-      overflow-y: scroll;
-      height: 100%;
-    }
-    .close {
-      grid-column: 2;
-      grid-row: 1;
-    }
   }
 `
-export default function InstagramNode({
-  thumbnail,
-  url,
-  caption,
-  children,
-  timeStamp,
-}) {
+export default function InstagramNode({ thumbnail, caption, id }) {
   const node = useRef()
   const [isOpen, setIsOpen] = useState(false)
   useClickOutside(node, () => setIsOpen(false))
@@ -112,21 +47,15 @@ export default function InstagramNode({
       {isOpen && (
         <Modal isScrollable={true}>
           <IGPostContainer>
-            <div className="mainContainer" ref={node}>
-              <div className="close">
-                <IconButton onClick={() => setIsOpen(!isOpen)}>
-                  <CloseSharpIcon />
-                </IconButton>
-              </div>
-
-              <a className="imageContainer" target="__blank" href={url}>
-                {children}
-              </a>
-              <div className="caption">
-                <p>{timeStamp}</p>
-                <CaptionTags {...{ caption }} />
-              </div>
-            </div>
+            <iframe
+              ref={node}
+              src={id + `embed`}
+              frameborder="0"
+              allowfullscreen
+              scrolling="yes"
+              allowtransparency
+              height="620px"
+            ></iframe>
           </IGPostContainer>
         </Modal>
       )}

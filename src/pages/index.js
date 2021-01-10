@@ -23,6 +23,7 @@ const IndexPage = () => {
           igHandle
           imagesToPull
           cancelPolicy
+          igAccessToken
           schedule {
             friday {
               available
@@ -73,13 +74,14 @@ const IndexPage = () => {
     imagesToPull,
     cancelPolicy,
     schedule,
+    igAccessToken,
   } = data.site.siteMetadata
   return (
     <FrameContextProvider>
       <Layout>
         <SEO title="Home" />
         <HeroContainer {...{ mission, bookingSite, saleSite }} />
-        <InstagramFeed {...{ igHandle, imagesToPull }} />
+        <InstagramFeed {...{ igHandle, imagesToPull, igAccessToken }} />
         <BusinessInfo {...{ address, cancelPolicy, schedule }} />
         <ContactForm />
       </Layout>

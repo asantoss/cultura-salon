@@ -7,6 +7,7 @@ module.exports = {
     address: `2570 Blackmon Dr,Suite 440,
     Decatur, GA 30033`,
     igHandle: "cultura.salon.atl",
+    igAccessToken: "d6bcb99e8655b82b5817ddd4fe1d78e8",
     imagesToPull: 12,
     author: `@asantoss`,
     siteUrl: `https://culturasalon.com`,
@@ -53,6 +54,13 @@ module.exports = {
   },
   plugins: [
     {
+      resolve: `gatsby-source-instagram-all`,
+      options: {
+        access_token:
+          "IGQVJXOTlNeng3ZAUVmZA04zekdyZAzFlX1kyeTdTNUdMX1VVbXc1X1NuaUp1eHdXNWRhQXViTVFrZAkt4V3hIWTlhRHM0b0Q1cllZAU200c09pMS01MkZA4WGItRmdYdEEyT1NIRVBId05oWDN3VXRBX29aVAZDZD",
+      },
+    },
+    {
       resolve: "gatsby-plugin-react-svg",
       options: {
         rule: {
@@ -75,6 +83,21 @@ module.exports = {
       options: {
         name: "fonts",
         path: `${__dirname}/src/fonts/`,
+      },
+    },
+    {
+      resolve: `gatsby-transformer-remark`,
+      options: {
+        plugins: [
+          {
+            resolve: "gatsby-remark-instagram-embed",
+            options: {
+              width: 500,
+              height: 500,
+            },
+          },
+          `gatsby-remark-responsive-iframe`, // optional plugin but recommended
+        ],
       },
     },
     {
