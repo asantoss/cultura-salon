@@ -1,10 +1,8 @@
-import React, { useState, useEffect } from "react"
-import axios from "axios"
+import React, { useState, } from "react"
+
 import Modal from "../Modal"
 import styled from "styled-components"
-import IconButton from "@material-ui/core/IconButton"
-import CloseSharpIcon from "@material-ui/icons/CloseSharp"
-import CaptionTags from "./hashtags"
+
 import { useRef } from "react"
 import useClickOutside from "../../../hooks/clickOutside"
 const IGPostContainer = styled.div`
@@ -48,6 +46,7 @@ export default function InstagramNode({ thumbnail, caption, id }) {
         <Modal isScrollable={true}>
           <IGPostContainer>
             <iframe
+            title="IG Embed"
               ref={node}
               src={id + `embed`}
               frameborder="0"

@@ -5,7 +5,6 @@ import timeStampParse from "../../../utils/timeStampParse"
 import IconButton from "@material-ui/core/IconButton"
 import ArrowBackIosSharpIcon from "@material-ui/icons/ArrowBackIosSharp"
 import ArrowForwardIosSharpIcon from "@material-ui/icons/ArrowForwardIosSharp"
-import axios from "axios"
 import { useStaticQuery, graphql } from "gatsby"
 import Img from "gatsby-image"
 const Feed = styled.div`
@@ -87,7 +86,7 @@ const InstagramFeedStyled = styled.div`
 
 export default function InstagramFeed({ igHandle, igAccessToken }) {
   const carouselRef = useRef()
-  const [state, setstate] = useState({ loading: false, photos: [] })
+  const [state] = useState({ loading: false, photos: [] })
   const data = useStaticQuery(graphql`
     query IGQuery {
       allInstagramContent {

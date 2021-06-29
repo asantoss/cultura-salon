@@ -8,18 +8,6 @@ const HeroContainerStyled = styled.div`
   margin-bottom: 2em;
   display: flex;
   flex-direction: column;
-  width: 100%;
-  [class=" gatsby-image-wrapper"] {
-    height: 500px;
-  }
-  #hero {
-    height: 60%;
-    margin-bottom: 1em;
-    img {
-      width: 100%;
-      height: 60%;
-    }
-  }
   #call-to-action {
     width: 100%;
     padding: 2em;
@@ -32,7 +20,7 @@ const HeroContainerStyled = styled.div`
       margin: 0.5em 0;
     }
   }
-  @media screen and (min-width: 900px) {
+  @media screen and (min-width: 1024px) {
     flex-direction: row;
     width: 100%;
     align-items: center;

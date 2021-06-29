@@ -1,15 +1,17 @@
 import { Link } from "gatsby"
 import React from "react"
 import styled from "styled-components"
-import Logo from "../../images/culturalogo.inline.svg"
-const Container = styled.div`
+import Logo from "./LogoImage"
+
+
+const Container = styled.header`
   background: #fff;
   /* padding: 0 0.625em; */
   /* margin: 1.25em auto; */
   display: flex;
   justify-content: center;
   align-items: baseline;
-  margin: -7em auto;
+  /* margin: -7em auto; */
   a {
     text-decoration: none;
     color: black;
@@ -25,6 +27,7 @@ const Container = styled.div`
   }
   .header-container {
     margin: auto;
+    width: 300px;
   }
   .logo {
     animation: fadeIn 3s ease;
@@ -53,7 +56,7 @@ const Header = ({ siteTitle }) => {
     <Container>
       <div className="header-container">
         <Link to="/">
-          <Logo className="logo" style={{ height: "400px", width: "300px" }} />
+          <Logo/>
         </Link>
       </div>
     </Container>

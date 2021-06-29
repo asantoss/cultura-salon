@@ -4,7 +4,7 @@ import styled from "styled-components"
 
 const BusinessInfoContainer = styled.div`
   width: 100%;
-  padding: 5.3em 0;
+
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -24,7 +24,7 @@ const BusinessInfoContainer = styled.div`
     display: flex;
     padding: 2em;
     justify-content: space-between;
-
+    flex-direction: column;
     .address,
     .hours,
     .policy {
@@ -45,7 +45,7 @@ const BusinessInfoContainer = styled.div`
     margin: 1em 0;
     font-weight: 400;
   }
-  @media screen and (min-width: 900px) {
+  @media screen and (min-width: 1024px) {
     flex-direction: row;
     justify-content: flex-start;
     align-items: flex-start;
@@ -57,6 +57,7 @@ const BusinessInfoContainer = styled.div`
     .location-hours {
       margin: 0 2em;
       width: 50%;
+      flex-direction: row;
       div {
         flex-direction: row;
       }
@@ -106,7 +107,7 @@ export default function BusinessInfo({ address, cancelPolicy, schedule }) {
             <br /> (404) 585-0795
           </p>
           <h3 className="directionsLink">
-            <a href={encodeAddress(address)}>Get Directions</a>
+            <a href={encodeAddress(address)}><u>Get Directions</u></a>
           </h3>
         </div>
         <div className="policy">

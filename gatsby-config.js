@@ -20,7 +20,7 @@ module.exports = {
         to: "",
       },
       tuesday: {
-        available: true,
+        available: false,
         from: "10:00 AM",
         to: "8:00 PM",
       },
@@ -40,9 +40,9 @@ module.exports = {
         to: "5:00 PM",
       },
       saturday: {
-        available: false,
-        from: "",
-        to: "",
+        available: true,
+        from: "9:00 AM",
+        to: "2:00 PM",
       },
       sunday: {
         available: false,
@@ -57,7 +57,7 @@ module.exports = {
       resolve: `gatsby-source-instagram-all`,
       options: {
         access_token:
-          "IGQVJXOTlNeng3ZAUVmZA04zekdyZAzFlX1kyeTdTNUdMX1VVbXc1X1NuaUp1eHdXNWRhQXViTVFrZAkt4V3hIWTlhRHM0b0Q1cllZAU200c09pMS01MkZA4WGItRmdYdEEyT1NIRVBId05oWDN3VXRBX29aVAZDZD",
+          "IGQVJWWlBoWFVIckN3RWJOZAkg1bzhnUWI3WHpvZAzNaX3lOSV9Sd1Nwdl82bVY2REV4alU1S19SbmtqUS1pMU1vNHB1OTVzX2hVb1VlMm9rcFZA2VGE3REM5QXdvLXAyb1p6Wi0zNERjUWlVSTRzWDVjYgZDZD",
       },
     },
     {
