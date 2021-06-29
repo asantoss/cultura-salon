@@ -18,7 +18,7 @@ const Image = () => {
     query {
       heroImage: file(relativePath: { eq: "hero.png" }) {
         childImageSharp {
-          fluid(maxWidth: 500, maxHeight: 500, quality: 100) {
+          fluid(maxWidth: 600, maxHeight: 600, quality: 100) {
             ...GatsbyImageSharpFluid
           }
         }
@@ -26,7 +26,17 @@ const Image = () => {
     }
   `)
 
-  return <Img fluid={data.heroImage.childImageSharp.fluid} objectPosition="top" style={{ borderRadius: "5px"}} fadeIn={true} title='hero image' />
+  return (
+    <Img
+      fluid={data.heroImage.childImageSharp.fluid}
+      style={{ borderRadius: "5px", height: 500 }}
+      imgStyle={{
+        objectPosition: "top",
+      }}
+      fadeIn={true}
+      title="hero image"
+    />
+  )
 }
 
 export default Image

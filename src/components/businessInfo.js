@@ -25,6 +25,7 @@ const BusinessInfoContainer = styled.div`
     padding: 2em;
     justify-content: space-between;
     flex-direction: column;
+
     .address,
     .hours,
     .policy {
@@ -57,6 +58,7 @@ const BusinessInfoContainer = styled.div`
     .location-hours {
       margin: 0 2em;
       width: 50%;
+      flex-wrap: wrap;
       flex-direction: row;
       div {
         flex-direction: row;
@@ -107,7 +109,9 @@ export default function BusinessInfo({ address, cancelPolicy, schedule }) {
             <br /> (404) 585-0795
           </p>
           <h3 className="directionsLink">
-            <a href={encodeAddress(address)}><u>Get Directions</u></a>
+            <a href={encodeAddress(address)}>
+              <u>Get Directions</u>
+            </a>
           </h3>
         </div>
         <div className="policy">

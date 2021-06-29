@@ -24,13 +24,8 @@ const HeroContainerStyled = styled.div`
     flex-direction: row;
     width: 100%;
     align-items: center;
-    height: fit-content;
     #hero {
       width: 50%;
-      flex-basis: 50%;
-      img {
-        width: 100%;
-      }
     }
     #call-to-action {
       width: 50%;
@@ -38,7 +33,7 @@ const HeroContainerStyled = styled.div`
       justify-content: center;
       align-items: baseline;
       div {
-        width: 60%;
+        width: 75%;
         height: 100%;
         display: flex;
         flex-direction: column;
@@ -48,7 +43,7 @@ const HeroContainerStyled = styled.div`
           flex-direction: row;
         }
         button {
-          margin: 1em 0;
+          margin: 1rem 0.5rem;
         }
       }
       h1 {

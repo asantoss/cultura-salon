@@ -6,12 +6,11 @@ export const Button = styled.button`
   font-size: 1rem;
   margin: 1em 0;
   background-color: inherit;
-  font-weight: normal;
+  /* font-weight: normal; */
   width: 100%;
+  border-radius: 5px;
+  font-weight: 500;
   font-family: "Karla", sans-serif;
-  @media screen and (min-width: 700px) {
-    max-width: 200px;
-  }
   cursor: pointer;
   :hover {
     background-color: black;
